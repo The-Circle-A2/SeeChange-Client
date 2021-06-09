@@ -1,0 +1,38 @@
+{
+  "name": "SeeChange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "engines": {
+    "node": "11.10.0",
+    "npm": "6.14.9"
+  },
+  "scripts": {
+    "test": "nyc --reporter=lcov mocha --timeout 10000 --recursive -reporter spec server/tests/**/*.test.js --exit",
+    "start": "node server/server.js",
+    "dev": "SET NODE_ENV=production&& nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/WouterMolhoek/basebook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/WouterMolhoek/basebook/issues"
+  },
+  "homepage": "https://gitlab.com/WouterMolhoek/basebook#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.15",
+    "save": "^2.4.0",
+    "vue-meta": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
