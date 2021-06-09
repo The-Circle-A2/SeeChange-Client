@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const storySchema = require('./story.model');
-
 const validationRegex = {
     email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 }
@@ -27,10 +25,6 @@ const userSchema = new Schema({
     birthDate: {
       type: Date,
       required: "Birth date is required"
-    },
-    stories: {
-        type: [storySchema],
-        default: []
     },
     email: {
         type: String,
