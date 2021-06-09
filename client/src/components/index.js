@@ -1,12 +1,14 @@
 import Vue from 'vue'
 
-// form
+// Form
 import Input from './form/Input'
+import Button from './form/Button'
 
 
 [
-  // form
-  Input
+  // Form
+  Input,
+  Button
 
 ].forEach(Component => {
   Vue.component(Component.name, Component)

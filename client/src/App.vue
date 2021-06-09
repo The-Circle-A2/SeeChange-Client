@@ -65,7 +65,7 @@ export default {
   --checkbox-line-heigth: 180%;
 
   /* Input styling */
-  --input-border-radius: 8px;
+  --input-border-radius: 5px;
   --input-color: #222;
   --input-border-width: 1px;
   --input-border-color: #eee;
@@ -73,7 +73,7 @@ export default {
   --input-background-color: #fff;
   --input-disabled-background-color: #fafafa;
   --input-font-size: 16px;
-  --input-padding: 10px 16px;
+  --input-padding: 12px 16px;
   --input-error-border-color: #ffdddb;
   --input-error-background-color: #fffafa;
   --input-error-color: #ffb5b5;
@@ -97,10 +97,10 @@ export default {
   --button-background: var(--primary-color);
   --button-font-family: "Montserrat", sans-serif;
   --button-font-weight: 400;
-  --button-border-radius: 10px;
+  --button-border-radius: 5px;
   --button-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   --button-color: #fff;
-  --button-hover-color: #588ae2;
+  --button-hover-color: #e92b2b;
   --button-transition: all 200ms ease-in-out;
 }
 

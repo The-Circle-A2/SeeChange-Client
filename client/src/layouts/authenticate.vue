@@ -27,7 +27,7 @@ export default {
     width: 100%;
     max-width: 450px;
     min-height: 400px;
-    padding: 40px 30px;
+    padding: 70px 50px;
     border-radius: 5px;
   }
 }
