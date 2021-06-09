@@ -16,12 +16,12 @@ export default {
 .authenticate-container {
   width: 100vw;
   height: 100vh;
-  background-color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
 
   .authenticate-content {
+    margin: 20px;
     box-sizing: border-box;
     background-color: #fff;
     width: 100%;
@@ -29,6 +29,8 @@ export default {
     min-height: 400px;
     padding: 70px 50px;
     border-radius: 5px;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
   }
 }
 </style>

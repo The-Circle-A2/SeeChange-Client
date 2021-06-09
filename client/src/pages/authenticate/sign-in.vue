@@ -6,8 +6,17 @@
     <br />
     <br />
     <form @submit.prevent="login" novalidate>
-      <v-input :label="$t('_fields.email')" v-model="user.email" />
-      <v-input :label="$t('_fields.password')" v-model="user.password" />
+      <v-input
+        :label="$t('_fields.email')"
+        :required="true"
+        v-model="user.email"
+      />
+      <v-input
+        :label="$t('_fields.password')"
+        :required="true"
+        type="password"
+        v-model="user.password"
+      />
       <br />
       <v-button :label="$t('_buttons.sign_in')" position="full" />
     </form>
@@ -28,7 +37,12 @@ export default {
   },
 
   methods: {
-    login() {},
+    login() {
+      this.$store
+        .dispatch("authenticate/login", this.user)
+        .then(() => {})
+        .catch(() => {});
+    },
   },
 };
 </script>

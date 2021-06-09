@@ -85,7 +85,7 @@ export default {
 
   /* Card styling */
   --card-background: #fff;
-  --card-border-radius: 10px;
+  --card-border-radius: 5px;
   --card-shadow: 2px 3px 1px rgba(0, 0, 0, 0.04);
 
   /* Indicator colors */
