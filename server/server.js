@@ -23,10 +23,10 @@ app.all("/api/*", (_, res) => {
 
 
 // Handle production
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/public/'));
   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
-}
+// }
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -35,21 +35,21 @@ app.listen(PORT, () => {
 });
 
 // Connect to the db
-const db = require("./models");
-
-db.mongoose
-  .connect(db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Connected to the "+app.get('env')+" database!");
-  })
-  .catch(err => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
-  });
-
-
-if (app.get('env') === 'development') db.dropCollectionCustom()
+// const db = require("./models");
+//
+// db.mongoose
+//   .connect(db.url, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   })
+//   .then(() => {
+//     console.log("Connected to the "+app.get('env')+" database!");
+//   })
+//   .catch(err => {
+//     console.log("Cannot connect to the database!", err);
+//     process.exit();
+//   });
+//
+//
+// if (app.get('env') === 'development') db.dropCollectionCustom()
 
