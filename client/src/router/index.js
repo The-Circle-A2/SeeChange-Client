@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import store from "../store";
 
 import Dashboard from '../pages/dashboard/dashboard.vue'
-import SignIn from '../pages/authentication/sign-in.vue'
+import Stream from '../pages/stream/stream.vue'
+import SignIn from '../pages/authenticate/sign-in.vue'
 import NotFound from '../pages/404.vue'
 
 Vue.use(VueRouter);
@@ -15,16 +16,21 @@ const router = new VueRouter({
         path: '/',
         name: 'dashboard',
         component: Dashboard,
-      },              
-      {
-        path: '/signin',
-        name: 'login',
+      },
+      {        
+        path: '/stream',
+        name: 'stream',
+        component: Stream,
+      },      
+      {        
+        path: '/sign-in',
+        name: 'sign-in',
+        component: SignIn,
         meta: {
           layout: 'authenticate',
           requiresVisitor: true
         },
-        component: SignIn
-      },
+      },           
       {
         // Error 404 page
         path: '*',
@@ -34,25 +40,25 @@ const router = new VueRouter({
     ]
   });
 
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = store.getters['authenticate/isAuthenticated'];
+// router.beforeEach((to, from, next) => {
+//   const isAuthenticated = store.getters['authenticate/isAuthenticated'];
 
-  if(to.matched.some(record => record.meta.requiresAuth)) {
-    if (isAuthenticated) {
-      next();
-      return;
-    }
-    next({name: 'login'});
-  }
-  else if (to.matched.some(record => record.meta.requiresVisitor)) {
-    if (isAuthenticated) {
-      next({name: 'home'});
-      return;
-    }
-    next();
-  } else {
-    next();
-  }
-})
+//   if(to.matched.some(record => record.meta.requiresAuth)) {
+//     if (isAuthenticated) {
+//       next();
+//       return;
+//     }
+//     next({name: 'login'});
+//   }
+//   else if (to.matched.some(record => record.meta.requiresVisitor)) {
+//     if (isAuthenticated) {
+//       next({name: 'dashboard'});
+//       return;
+//     }
+//     next();
+//   } else {
+//     next();
+//   }
+// })
 
 export default router;

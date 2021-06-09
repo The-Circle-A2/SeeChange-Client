@@ -6,6 +6,8 @@ import VueMeta from 'vue-meta';
 import store from './store';
 import { i18n } from './lang/index';
 
+import "./components";
+
 // Layouts
 import LayoutDefault from './layouts/default';
 import LayoutAuthenticate from './layouts/authenticate';

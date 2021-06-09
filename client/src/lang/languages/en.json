@@ -5,5 +5,10 @@
 
   "_stream": {
 
+  },
+
+  "_fields": {
+    "email": "Email",
+    "password": "Password"
   }
 }

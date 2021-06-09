@@ -13,8 +13,8 @@ export default {
   flex: none;
   display: flex;
   box-sizing: border-box;
-  height: calc(100vh - 80px);
-  width: 300px;
+  height: calc(100vh - 90px);
+  width: 325px;
   border-right: var(--sidebar-border-width-color) solid
     var(--sidebar-border-color);
   background-color: #fff;

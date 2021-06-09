@@ -3,29 +3,12 @@
     <div class="input-label">
       {{ label }}
       <span class="require" v-if="required">*</span>
-      <info-circle :info="info" v-if="info" />
     </div>
 
     <div class="input-item" :class="{ error: error != null && error.$error }">
       <div class="prefix" v-if="prefix != null">
         {{ prefix }}
       </div>
-
-      <datepicker
-        :format="datepicker.format == null ? 'd MMMM yyyy' : datepicker.format"
-        :value="value"
-        :language="nl"
-        :disabled-dates="datepicker.disabledDates"
-        :clear-button="datepicker.clearButton"
-        :typeable="datepicker.typeable"
-        :minimum-view="datepicker.minimumView"
-        :disabled="disabled"
-        :monday-first="true"
-        :placeholder="placeholder"
-        @selected="selectedDate"
-        @cleared="clearedDate"
-        v-if="type == 'date'"
-      />
 
       <input
         v-if="type != 'date'"
@@ -115,15 +98,8 @@
 </template>
 
 <script>
-import Datepicker from "vuejs-datepicker";
-import { nl } from "vuejs-datepicker/dist/locale";
-import InfoCircle from "../custom/InfoCircle";
 export default {
   name: "VInput",
-  components: {
-    InfoCircle,
-    Datepicker,
-  },
   props: {
     label: {},
     placeholder: {},
@@ -144,11 +120,6 @@ export default {
       type: Object,
       required: false,
     },
-  },
-  data() {
-    return {
-      nl: nl,
-    };
   },
   methods: {
     keyup(e) {

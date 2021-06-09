@@ -1,35 +1,34 @@
 <template>
-  <div class="authenticate-card-container">
-    <div class="authenticate-card">
+  <section class="authenticate-container">
+    <main class="authenticate-content">
       <router-view />
-    </div>
-  </div>
+    </main>
+  </section>
 </template>
 
 <script>
 export default {
-  name: "authenticate",
-  data() {
-    return {
-      title: null,
-    };
-  },
+  name: "Authenticate",
 };
 </script>
 
 <style lang="scss" scoped>
-.authenticate-card-container {
+.authenticate-container {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  background-color: var(--primary-color);
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 130px 45px 45px 45px;
-  box-sizing: border-box;
+  justify-content: center;
 
-  .authenticate-card {
-    max-width: 500px;
-    width: 90%;
+  .authenticate-content {
+    box-sizing: border-box;
+    background-color: #fff;
+    width: 100%;
+    max-width: 450px;
+    min-height: 400px;
+    padding: 40px 30px;
+    border-radius: 5px;
   }
 }
 </style>

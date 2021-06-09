@@ -26,17 +26,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+
 * {
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 :root {
   /* Main colors */
-  --primary-color: #3d75d0;
-  --light-primary-color: #e1ebfb;
+  --primary-color: #f54b35;
   --secondary-color: #edae80;
-  --secondary-light-color: #f2f7ff;
 
   --global-p-lineheight: 170%;
   --link-color: inherit;

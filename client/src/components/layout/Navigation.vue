@@ -1,26 +1,18 @@
 <template>
   <header class="main-navigation">
-    <div class="page-title">
+    <router-link class="page-title" tag="a" :to="{ name: 'dashboard' }">
       <img src="../../../public/circle_logo.png" />
       <h3>SeeChange</h3>
-    </div>
+    </router-link>
   </header>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "Navbar",
 
   data() {
     return {};
-  },
-
-  computed: {
-    ...mapGetters({
-      isAuthenticated: "authenticate/isAuthenticated",
-    }),
   },
 };
 </script>
@@ -28,7 +20,7 @@ export default {
 <style lang="scss">
 .main-navigation {
   box-sizing: border-box;
-  height: 80px;
+  height: 90px;
   width: 100%;
   background-color: #fff;
   border-bottom: var(--sidebar-border-width-color) solid
@@ -40,6 +32,16 @@ export default {
   .page-title {
     display: flex;
     align-items: center;
+    cursor: pointer;
+
+    color: inherit;
+    text-decoration: none;
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
 
     h3 {
       margin-left: 20px;
