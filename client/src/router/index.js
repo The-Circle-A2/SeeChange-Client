@@ -18,7 +18,7 @@ const router = new VueRouter({
         component: Dashboard,
       },
       {        
-        path: '/stream',
+        path: '/stream/',
         name: 'stream',
         component: Stream,
       },      

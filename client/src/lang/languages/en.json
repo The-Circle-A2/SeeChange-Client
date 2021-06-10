@@ -1,6 +1,7 @@
 {
   "_dashboard": {
     "title": "Dashboard"
+
   },
 
   "_stream": {
@@ -14,5 +15,10 @@
 
   "_buttons": {
     "sign_in": "Sign in"
+  },
+
+  "404": {
+    "title": "Page not found",
+    "subtitle": "Go back to the dashboard"
   }
 }
