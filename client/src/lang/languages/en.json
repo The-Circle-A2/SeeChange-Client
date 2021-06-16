@@ -1,14 +1,18 @@
 {
   "_dashboard": {
     "title": "Dashboard"
-
   },
-
+  "_navigation":{
+    "title": "SeeChange"
+  },
   "_stream": {
     "followers": "followers"
   },
   "_navigation":{
     "back": "Back to dashboard"
+  },
+  "_sidebar": {
+    "title": "People you follow"
   },
   "_fields": {
     "email": "Email",

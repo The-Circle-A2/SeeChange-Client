@@ -80,11 +80,17 @@ export const state = {
       message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     },
   ],
+  user: {
+    _id: 1,
+    name: "John Doe",
+  },
 };
 
 export const getters = {
   streams: (state) => state.streamlist,
   following: (state) => state.following,
+
   stream: (state) => state.streamInfo,
   chat: (state) => state.chatMessages,
+  user: (state) => state.user,
 };
