@@ -5,9 +5,11 @@
   },
 
   "_stream": {
-
+    "followers": "followers"
   },
-
+  "_navigation":{
+    "back": "Back to dashboard"
+  },
   "_fields": {
     "email": "Email",
     "password": "Password"
