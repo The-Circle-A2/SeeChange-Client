@@ -51,12 +51,10 @@ export const state = {
       city: "village",
     },
   ],
-  user: [
-    {
-      _id: 1,
-      name: "John Doe",
-    },
-  ],
+  user: {
+    _id: 1,
+    name: "John Doe",
+  },
 };
 
 export const getters = {

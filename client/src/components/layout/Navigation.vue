@@ -2,17 +2,22 @@
   <header class="main-navigation">
     <router-link class="page-title" tag="a" :to="{ name: 'dashboard' }">
       <img class="logo" src="../../../public/circle_logo.png" />
-      <h3>SeeChange</h3>
+      <h3>{{ $t("_navigation.title") }}</h3>
     </router-link>
     <div class="user">
-      <h4>User Name</h4>
+      <h4>{{ user.name }}</h4>
       <img src="../../../public/down_arrow.png" />
     </div>
   </header>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
+  computed: mapGetters({
+    user: "dummy/user",
+  }),
   name: "Navbar",
 
   data() {

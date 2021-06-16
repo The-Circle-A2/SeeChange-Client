@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <h4 class="header">People you follow</h4>
+    <h4 class="header">{{ $t("_sidebar.title") }}</h4>
     <Following
       v-for="item in items"
       :key="item._id"
