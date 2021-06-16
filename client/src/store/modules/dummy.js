@@ -51,9 +51,16 @@ export const state = {
       city: "village",
     },
   ],
+  user: [
+    {
+      _id: 1,
+      name: "John Doe",
+    },
+  ],
 };
 
 export const getters = {
   streams: (state) => state.streamlist,
   following: (state) => state.following,
+  user: (state) => state.user,
 };

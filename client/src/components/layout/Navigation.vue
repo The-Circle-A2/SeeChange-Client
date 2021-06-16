@@ -1,9 +1,13 @@
 <template>
   <header class="main-navigation">
     <router-link class="page-title" tag="a" :to="{ name: 'dashboard' }">
-      <img src="../../../public/circle_logo.png" />
+      <img class="logo" src="../../../public/circle_logo.png" />
       <h3>SeeChange</h3>
     </router-link>
+    <div class="user">
+      <h4>User Name</h4>
+      <img src="../../../public/down_arrow.png" />
+    </div>
   </header>
 </template>
 
@@ -28,6 +32,17 @@ export default {
   padding: 0 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  .user {
+    display: flex;
+
+    img {
+      width: 12px;
+      height: 12px;
+      margin: auto 0px auto 5px;
+    }
+  }
 
   .page-title {
     display: flex;
@@ -37,7 +52,7 @@ export default {
     color: inherit;
     text-decoration: none;
 
-    img {
+    .logo {
       width: 50px;
       height: 50px;
       object-fit: contain;
