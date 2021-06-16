@@ -1,38 +1,39 @@
 {
   "name": "SeeChange",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "engines": {
-    "node": "11.10.0",
-    "npm": "6.14.9"
-  },
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "nyc --reporter=lcov mocha --timeout 10000 --recursive -reporter spec server/tests/**/*.test.js --exit",
-    "start": "node server/server.js",
-    "dev": "SET NODE_ENV=production&& nodemon server/server.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/WouterMolhoek/basebook.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/WouterMolhoek/basebook/issues"
-  },
-  "homepage": "https://gitlab.com/WouterMolhoek/basebook#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.15",
-    "save": "^2.4.0",
-    "vue-meta": "^2.4.0"
+    "core-js": "^3.7.0",
+    "jwt-hs256": "^2.0.0",
+    "jwt-simple": "^0.5.6",
+    "keypair": "^1.0.3",
+    "sha512": "0.0.1",
+    "vue": "^2.6.12",
+    "vue-i18n": "^8.22.2",
+    "vue-meta": "^2.4.0",
+    "vue-progressbar": "^0.7.5",
+    "vue-router": "^3.4.9",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
-  }
+    "@vue/cli-plugin-babel": "^4.5.9",
+    "@vue/cli-plugin-unit-jest": "^4.5.9",
+    "@vue/cli-service": "^4.5.9",
+    "@vue/test-utils": "^1.0.3",
+    "start-server-and-test": "^1.11.6",
+    "vue-jest": "^3.0.7",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

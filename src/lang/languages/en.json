@@ -1,13 +1,17 @@
 {
   "_dashboard": {
     "title": "Dashboard"
-
   },
-
+  "_navigation":{
+    "title": "SeeChange",
+    "back": "Back to dashboard"
+  },
   "_stream": {
-
+    "followers": "followers"
   },
-
+  "_sidebar": {
+    "title": "People you follow"
+  },
   "_fields": {
     "email": "Email",
     "password": "Password"
