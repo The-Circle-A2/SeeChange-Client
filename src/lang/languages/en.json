@@ -9,6 +9,10 @@
   "_stream": {
     "followers": "followers"
   },
+  "_streamer-profile": {
+    "title": "Streamer Profile",
+    "header": "Recent Streams"
+  },
   "_sidebar": {
     "title": "People you follow"
   },

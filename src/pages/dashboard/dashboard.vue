@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import StreamItem from "./components/StreamItem.vue";
+import StreamItem from "../../components/stream/StreamItem.vue";
 import { mapGetters } from "vuex";
 
 export default {
