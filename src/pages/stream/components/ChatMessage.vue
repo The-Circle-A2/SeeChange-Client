@@ -52,6 +52,7 @@ export default {
 
         .chat-time{
             float: right;
+            font-weight: 400;
         }
 
         .chat-message{

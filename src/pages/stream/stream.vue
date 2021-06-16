@@ -21,11 +21,20 @@
       </div>
     </div>
     <div class="stream-sidebar">
+      
       <ChatMessage v-for="item in items"
       :key="item._id"
       :name="item.name"
       :date="item.date"
       :message="item.message"/>
+
+      <div class="chat-input-container">
+        <form class="chat-form">
+          <input class="chat-input" v-model="chat" placeholder="send a message">
+          <button class="chat-submit" type="submit" @click="submit">
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -73,7 +82,7 @@ export default {
   }
 
   .stream-container{
-    max-width: 100%;
+    max-width: 1305px;
     display: block;
     margin: 0 auto;
     padding-left: 40px;
@@ -160,7 +169,43 @@ export default {
       margin-left: auto;
       order: 2;
     }
+
+  }
+  
+  .chat-input-container{
+    margin-top: auto;
   }
 
+  .chat-form{
+    width: 100%;
+    color: #9F9F9F;
+    height: 36px;
+    padding-left: 10px;
+    border: 0.5px solid #CCC;
+    border-radius: 3px;
+
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chat-input{
+    border: none;
+    flex-grow:2;
+  }
+
+  .chat-input:focus{
+    outline: none;
+  }
+
+  .chat-submit{
+    width: 20px;
+    height: 20px;
+    background:url(../../../public/send.png);
+    background-repeat: no-repeat;
+    border: none;
+    margin-right: 10px;
+  }
 }
 </style>
