@@ -6,7 +6,10 @@
     "title": "SeeChange"
   },
   "_stream": {
-
+    "followers": "followers"
+  },
+  "_navigation":{
+    "back": "Back to dashboard"
   },
   "_sidebar": {
     "title": "People you follow"

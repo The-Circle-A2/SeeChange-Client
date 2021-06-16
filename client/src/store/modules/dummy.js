@@ -51,6 +51,35 @@ export const state = {
       city: "village",
     },
   ],
+  streamInfo: {
+      _id: 1,
+      title: "Stream in Rotterdam",
+      viewers: "12345",
+      name: "Karen Jansen",
+      followers: "12345", 
+      city: "Rotterdam",
+
+  },
+  chatMessages: [
+    {
+      _id: 1,
+      name: "Piet Jan",
+      date: "01-01-01 11:11",
+      message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      _id: 2,
+      name: "Piet Jan",
+      date: "01-01-01 11:11",
+      message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+    {
+      _id: 3,
+      name: "Piet Jan",
+      date: "01-01-01 11:11",
+      message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    },
+  ],
   user: {
     _id: 1,
     name: "John Doe",
@@ -60,5 +89,8 @@ export const state = {
 export const getters = {
   streams: (state) => state.streamlist,
   following: (state) => state.following,
+
+  stream: (state) => state.streamInfo,
+  chat: (state) => state.chatMessages,
   user: (state) => state.user,
 };

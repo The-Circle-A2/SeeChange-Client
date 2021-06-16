@@ -1,14 +1,50 @@
 <template>
   <div class="stream">
     <div class="stream-content">
-      <p>test</p>
+      <NavigateBack> </NavigateBack>
+      <div class="stream-container">
+      
+        <div class="stream-placeholder"> </div>
+
+        <div class="stream-meta">
+          <p class="stream-title">{{ stream.title }}</p>
+          <p class="view-count">{{ stream.viewers }}</p>
+          <img src="../../../public/viewer_icon.png" class="view-icon">
+        </div>
+
+        <div class="streamer-info">
+            <img src="../../../public/avatar.png" class="streamer-avatar">
+            <div class="streamer-info-text"> 
+              <p class="streamer-name">{{ stream.name }}<p>
+              <p class="streamer-followers">{{ stream.followers }} {{$t("_stream.followers")}}</p>
+              <p class="streamer-location">{{ stream.city }}</p>
+            </div>
+            <button class="follow-button">Follow</button>
+        </div>
+
+      </div>
     </div>
-    <div class="stream-sidebar"></div>
+    <div class="stream-sidebar">
+      <ChatMessage v-for="item in items"
+      :key="item._id"
+      :name="item.name"
+      :date="item.date"
+      :message="item.message"/>
+    </div>
   </div>
 </template>
 
 <script>
+import NavigateBack from "../../components/navigation/NavigateBack.vue";
+import ChatMessage from "./components/ChatMessage.vue";
+import { mapGetters } from "vuex";
+
 export default {
+  computed: mapGetters({
+    items: "dummy/chat",
+    stream: "dummy/stream",
+  }),
+  components: { NavigateBack, ChatMessage },
   name: "Stream",
 
   metaInfo() {
@@ -29,13 +65,105 @@ export default {
   .stream-sidebar {
     flex: none;
     display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     height: calc(100vh - 90px);
     width: 325px;
     border-left: var(--sidebar-border-width-color) solid
       var(--sidebar-border-color);
     background-color: #fff;
-    padding: 40px 30px;
+    padding: 20px 20px;
   }
+
+  .stream-container{
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+
+    .stream-placeholder{
+      max-width: 100%;
+      height: 535px;
+      background-color: #c4c4c4;
+      margin-bottom: 10px;
+    }
+
+    .stream-title{
+      font-weight: 600;
+      font-size: 18px;
+      float: left;
+    }
+
+    .view-icon{
+      float: right;
+      width: 18px;
+      height: 18px;
+      padding-right: 5px;
+    }
+
+    .view-count{
+      float: right;
+      font-weight: 300;
+      font-size: 14px;
+    }
+
+    .stream-meta{
+      display: inline-block;
+      width: 100%;
+    }
+
+    .streamer-info{
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .streamer-avatar{
+      padding-right: 15px;
+      height: 60px;
+      width: 60px;
+      
+    }
+
+    .streamer-info-text{
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .streamer-name{
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .streamer-followers{
+      font-weight: 600;
+      font-size: 12px;  
+      color: #AEB3BB;
+      padding-bottom: 10px;
+
+    }
+
+    .streamer-location{
+      font-weight: 300;
+      font-size: 14px;
+    }
+
+    .follow-button{
+      width: 90px;
+      height: 26px;
+      background: #F54B35;
+      border-radius: 3px;
+      color: #ffffff;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      align-self: center;
+      margin-left: auto;
+      order: 2;
+    }
+  }
+
 }
 </style>
