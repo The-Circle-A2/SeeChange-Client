@@ -12,16 +12,12 @@
           <img src="../../../public/viewer_icon.png" class="view-icon">
         </div>
 
-        <div class="streamer-info">
-            <img src="../../../public/avatar.png" class="streamer-avatar">
-            <div class="streamer-info-text"> 
-              <p class="streamer-name">{{ stream.name }}<p>
-              <p class="streamer-followers">{{ stream.followers }} {{$t("_stream.followers")}}</p>
-              <p class="streamer-location">{{ stream.city }}</p>
-            </div>
-            <button class="follow-button">Follow</button>
-        </div>
+        <Profile
+        :name="stream.name"
+        :followers="stream.followers"
+        :city="stream.city"/>
 
+        
       </div>
     </div>
     <div class="stream-sidebar">
@@ -36,6 +32,7 @@
 
 <script>
 import NavigateBack from "../../components/navigation/NavigateBack.vue";
+import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
 
@@ -44,7 +41,7 @@ export default {
     items: "dummy/chat",
     stream: "dummy/stream",
   }),
-  components: { NavigateBack, ChatMessage },
+  components: { NavigateBack, Profile ,ChatMessage },
   name: "Stream",
 
   metaInfo() {
