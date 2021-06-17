@@ -6,7 +6,6 @@
         <p class="streamer-followers">{{ followers }} {{$t("_stream.followers")}}</p>
         <p class="streamer-location">{{ city }}</p>
     </div>
-    <button class="follow-button">Follow</button>
 </div>
 </template>
 
@@ -61,17 +60,4 @@ export default {
     font-size: 14px;
 }
 
-.follow-button{
-    width: 90px;
-    height: 26px;
-    background: #F54B35;
-    border-radius: 3px;
-    color: #ffffff;
-    border: none;
-    font-size: 14px;
-    font-weight: 500;
-    align-self: center;
-    margin-left: auto;
-    order: 2;
-}
 </style>

@@ -2,7 +2,6 @@
   <section class="default-container">
     <navigation />
     <main class="default-content">
-      <sidebar />
       <router-view />
     </main>
   </section>
