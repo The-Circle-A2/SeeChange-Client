@@ -1,11 +1,11 @@
 <template>
 <div class="chat-wrapper">
     <div class="chat-container">
-    <img src="../../../../public/avatar.png" class="profile-avatar">
+    <img v-if="name !== ''" src="../../../../public/avatar.png" class="profile-avatar">
     
     <div class="chat-text">
         <p class="chat-name">{{ name }} <span class="chat-time">{{ date }}</span></p>
-        <p class="chat-message">{{ message }}</p>
+        <p class="chat-message" v-bind:class="{ 'm-left' : name === ''}">{{ message }}</p>
     </div>
     </div>
 </div>
@@ -32,6 +32,9 @@ export default {
         flex-direction: row;
         padding-right: 20px;
 
+        .m-left{
+            margin-left: 56px;
+        }
 
         .profile-avatar{
             width: 30px;

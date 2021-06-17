@@ -47,8 +47,11 @@ import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
-
+import socketConnection from "../../socket/socketConnection.js";
 export default {
+  async created () {
+    socketConnection.establishConnection(this);
+  },
   computed: mapGetters({
     items: "dummy/chat",
     stream: "dummy/stream",
@@ -73,14 +76,12 @@ export default {
         console.log("niet valid");
         this.$refs.chatBox.reset();
         return;
+      } else{
+        socketConnection.sendMessageToServer(this.message);
+        this.message = "";
       }
 
       this.$refs.chatBox.reset();
-      // this.$store.dispatch('datasources/create', this.data_source).then(() => {
-
-      // }).catch(() => {
-
-      // })
     },
   },
   metaInfo() {
