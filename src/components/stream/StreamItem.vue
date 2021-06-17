@@ -1,5 +1,5 @@
 <template>
-  <div class="stream-item">
+  <router-link :to="to" class="stream-item">
     <span class="thumbnail"></span>
     <h5 class="title">{{ title }}</h5>
     <div class="streamer-info">
@@ -7,7 +7,7 @@
       <span class="seperation"></span>
       <p class="city">{{ city }}</p>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ export default {
     title: { type: String, default: null },
     name: { type: String, default: null },
     city: { type: String, default: null },
+    to: { type: Object, default: {} },
   },
 };
 </script>
@@ -44,27 +45,29 @@ export default {
 .stream-item {
   margin: 0px 55px 30px 0px;
   height: auto;
-}
+  text-decoration: none;
+  color: #3e3e3e;
 
-.streamer-info {
-  display: flex;
-  margin-top: 5px;
+  .streamer-info {
+    display: flex;
+    margin-top: 5px;
 
-  p {
-    font-size: 11pt;
-  }
+    p {
+      font-size: 11pt;
+    }
 
-  .city {
-    font-weight: 300;
-  }
+    .city {
+      font-weight: 300;
+    }
 
-  .seperation {
-    margin: auto 5px auto 5px;
-    height: 5px;
-    width: 5px;
-    background-color: #3e3e3e;
-    border-radius: 50%;
-    display: inline-block;
+    .seperation {
+      margin: auto 5px auto 5px;
+      height: 5px;
+      width: 5px;
+      background-color: #3e3e3e;
+      border-radius: 50%;
+      display: inline-block;
+    }
   }
 }
 </style>

@@ -6,6 +6,7 @@
       :title="item.title"
       :name="item.name"
       :city="item.city"
+      :to="{ name: 'stream', params: { id: item.id } }"
     />
   </div>
 </template>
