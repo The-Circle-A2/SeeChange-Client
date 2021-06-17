@@ -17,6 +17,10 @@ import Axios from 'axios';
 
 Vue.prototype.$http = Axios;
 
+// Vuelidate
+import Vuelidate from "vuelidate";
+Vue.use(Vuelidate);
+
 // Layouts
 Vue.component('default-layout', LayoutDefault);
 Vue.component('authenticate-layout', LayoutAuthenticate);

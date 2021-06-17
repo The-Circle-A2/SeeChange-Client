@@ -29,9 +29,9 @@
       :message="item.message"/>
 
       <div class="chat-input-container">
-        <form class="chat-form">
-          <input class="chat-input" v-model="chat" placeholder="send a message">
-          <button class="chat-submit" type="submit" @click="submit">
+        <form ref="chatBox" novalidate class="chat-form" @submit.prevent="send">
+          <input class="chat-input" v-model="message" placeholder="send a message" />
+          <button class="chat-submit" type="submit">
           </button>
         </form>
       </div>
@@ -44,6 +44,7 @@ import NavigateBack from "../../components/navigation/NavigateBack.vue";
 import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
+import { required } from 'vuelidate/lib/validators';
 
 export default {
   computed: mapGetters({
@@ -52,7 +53,34 @@ export default {
   }),
   components: { NavigateBack, Profile ,ChatMessage },
   name: "Stream",
+  data () {
+    return {
+      message: '',
+    }
+  },
+  validations: {
+    message: {
+      required
+    },
+  },
+  methods:{
+    send(){
+      console.log('Send aangeroepen');
+      this.$v.$touch()
+      if (this.$v.$invalid){
+        console.log('niet valid');
+        this.$refs.chatBox.reset();
+        return
+      }
 
+      this.$refs.chatBox.reset();
+      // this.$store.dispatch('datasources/create', this.data_source).then(() => {
+
+      // }).catch(() => {
+
+      // })
+    }
+  },
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
   },
@@ -191,8 +219,8 @@ export default {
   }
 
   .chat-input{
-    border: none;
-    flex-grow:2;
+    border: none!important;
+    flex-grow:2!important;
   }
 
   .chat-input:focus{
@@ -206,6 +234,23 @@ export default {
     background-repeat: no-repeat;
     border: none;
     margin-right: 10px;
+  }
+
+  .input-holder{
+    padding: 0px!important;
+    border-style: none!important;
+    background: none;
+    box-shadow: none;
+    margin-top: 5px;
+    height: 37px;
+  }
+
+  .input-item{
+    padding: 0px!important;
+    border-style: none!important;
+    box-shadow: none;
+    margin-top: 5px;
+    height: 37px;
   }
 }
 </style>
