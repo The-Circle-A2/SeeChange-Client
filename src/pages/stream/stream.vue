@@ -1,38 +1,40 @@
 <template>
   <div class="stream">
     <div class="stream-content">
-      
       <div class="stream-container">
-        <NavigateBack> </NavigateBack>
-        <div class="stream-placeholder"> </div>
+        <NavigateBack />
+        <div class="stream-placeholder"></div>
 
         <div class="stream-meta">
           <p class="stream-title">{{ stream.title }}</p>
           <p class="view-count">{{ stream.viewers }}</p>
-          <img src="../../../public/viewer_icon.png" class="view-icon">
+          <img src="../../../public/viewer_icon.png" class="view-icon" />
         </div>
 
         <Profile
-        :name="stream.name"
-        :followers="stream.followers"
-        :city="stream.city"/>
-
-        
+          :name="stream.name"
+          :followers="stream.followers"
+          :city="stream.city"
+        />
       </div>
     </div>
     <div class="stream-sidebar">
-      
-      <ChatMessage v-for="item in items"
-      :key="item._id"
-      :name="item.name"
-      :date="item.date"
-      :message="item.message"/>
+      <ChatMessage
+        v-for="item in items"
+        :key="item._id"
+        :name="item.name"
+        :date="item.date"
+        :message="item.message"
+      />
 
       <div class="chat-input-container">
         <form ref="chatBox" novalidate class="chat-form" @submit.prevent="send">
-          <input class="chat-input" v-model="message" placeholder="send a message" />
-          <button class="chat-submit" type="submit">
-          </button>
+          <input
+            class="chat-input"
+            v-model="message"
+            placeholder="send a message"
+          />
+          <button class="chat-submit" type="submit"></button>
         </form>
       </div>
     </div>
@@ -44,33 +46,33 @@ import NavigateBack from "../../components/navigation/NavigateBack.vue";
 import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
-import { required } from 'vuelidate/lib/validators';
+import { required } from "vuelidate/lib/validators";
 
 export default {
   computed: mapGetters({
     items: "dummy/chat",
     stream: "dummy/stream",
   }),
-  components: { NavigateBack, Profile ,ChatMessage },
+  components: { NavigateBack, Profile, ChatMessage },
   name: "Stream",
-  data () {
+  data() {
     return {
-      message: '',
-    }
+      message: "",
+    };
   },
   validations: {
     message: {
-      required
+      required,
     },
   },
-  methods:{
-    send(){
-      console.log('Send aangeroepen');
-      this.$v.$touch()
-      if (this.$v.$invalid){
-        console.log('niet valid');
+  methods: {
+    send() {
+      console.log("Send aangeroepen");
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        console.log("niet valid");
         this.$refs.chatBox.reset();
-        return
+        return;
       }
 
       this.$refs.chatBox.reset();
@@ -79,7 +81,7 @@ export default {
       // }).catch(() => {
 
       // })
-    }
+    },
   },
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
@@ -93,7 +95,7 @@ export default {
   justify-content: flex-start;
 
   .stream-content {
-    width: calc(100vw - 325px - 325px);
+    width: calc(100vw - 325px);
   }
 
   .stream-sidebar {
@@ -109,85 +111,83 @@ export default {
     padding: 20px 20px;
   }
 
-  .stream-container{
-    max-width: 1305px;
+  .stream-container {
+    max-width: 1024px;
     display: block;
     margin: 0 auto;
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 10px;
 
-    .stream-placeholder{
+    .stream-placeholder {
       max-width: 100%;
       height: 535px;
       background-color: #c4c4c4;
       margin-bottom: 10px;
     }
 
-    .stream-title{
+    .stream-title {
       font-weight: 600;
       font-size: 18px;
       float: left;
     }
 
-    .view-icon{
+    .view-icon {
       float: right;
       width: 18px;
       height: 18px;
       padding-right: 5px;
     }
 
-    .view-count{
+    .view-count {
       float: right;
       font-weight: 300;
       font-size: 14px;
     }
 
-    .stream-meta{
+    .stream-meta {
       display: inline-block;
       width: 100%;
     }
 
-    .streamer-info{
+    .streamer-info {
       margin-top: 20px;
       display: flex;
       flex-direction: row;
     }
 
-    .streamer-avatar{
+    .streamer-avatar {
       padding-right: 15px;
       height: 60px;
       width: 60px;
-      
     }
 
-    .streamer-info-text{
+    .streamer-info-text {
       display: flex;
       flex-direction: column;
     }
-    
-    .streamer-name{
+
+    .streamer-name {
       font-weight: 600;
       font-size: 14px;
     }
 
-    .streamer-followers{
+    .streamer-followers {
       font-weight: 600;
-      font-size: 12px;  
-      color: #AEB3BB;
+      font-size: 12px;
+      color: #aeb3bb;
       padding-bottom: 10px;
-
     }
 
-    .streamer-location{
+    .streamer-location {
       font-weight: 300;
       font-size: 14px;
     }
 
-    .follow-button{
+    .follow-button {
       width: 90px;
       height: 26px;
-      background: #F54B35;
+      background: #f54b35;
       border-radius: 3px;
       color: #ffffff;
       border: none;
@@ -197,57 +197,56 @@ export default {
       margin-left: auto;
       order: 2;
     }
-
   }
-  
-  .chat-input-container{
+
+  .chat-input-container {
     margin-top: auto;
   }
 
-  .chat-form{
+  .chat-form {
     width: 100%;
-    color: #9F9F9F;
+    color: #9f9f9f;
     height: 36px;
     padding-left: 10px;
-    border: 0.5px solid #CCC;
+    border: 0.5px solid #ccc;
     border-radius: 3px;
 
-    display:flex;
-    flex-direction:row;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
   }
 
-  .chat-input{
-    border: none!important;
-    flex-grow:2!important;
+  .chat-input {
+    border: none !important;
+    flex-grow: 2 !important;
   }
 
-  .chat-input:focus{
+  .chat-input:focus {
     outline: none;
   }
 
-  .chat-submit{
+  .chat-submit {
     width: 20px;
     height: 20px;
-    background:url(../../../public/send.png);
+    background: url(../../../public/send.png);
     background-repeat: no-repeat;
     border: none;
     margin-right: 10px;
   }
 
-  .input-holder{
-    padding: 0px!important;
-    border-style: none!important;
+  .input-holder {
+    padding: 0px !important;
+    border-style: none !important;
     background: none;
     box-shadow: none;
     margin-top: 5px;
     height: 37px;
   }
 
-  .input-item{
-    padding: 0px!important;
-    border-style: none!important;
+  .input-item {
+    padding: 0px !important;
+    border-style: none !important;
     box-shadow: none;
     margin-top: 5px;
     height: 37px;

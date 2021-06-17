@@ -24,7 +24,6 @@ export default {
 
   .default-content {
     display: flex;
-    padding-left: 325px;
   }
 }
 </style>
