@@ -1,9 +1,9 @@
 <template>
   <div class="stream">
     <div class="stream-content">
-      <NavigateBack> </NavigateBack>
-      <div class="stream-container">
       
+      <div class="stream-container">
+        <NavigateBack> </NavigateBack>
         <div class="stream-placeholder"> </div>
 
         <div class="stream-meta">

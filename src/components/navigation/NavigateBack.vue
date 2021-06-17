@@ -13,8 +13,7 @@ export default {
 
 <style lang="scss" scoped>
 .navigate-to-dashboard{
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-bottom: 10px;
 
   .arrow{
     float: left;

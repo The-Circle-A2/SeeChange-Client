@@ -2,7 +2,6 @@
   <section class="default-container">
     <navigation />
     <main class="default-content">
-      <sidebar />
       <router-view />
     </main>
   </section>
@@ -25,6 +24,7 @@ export default {
 
   .default-content {
     display: flex;
+    padding-left: 325px;
   }
 }
 </style>
