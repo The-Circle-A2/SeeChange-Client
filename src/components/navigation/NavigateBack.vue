@@ -1,13 +1,18 @@
 <template>
-  <div class="navigate-to-dashboard" @click="this.$router.push('/dashboard')">
-    <img src="../../../public/arrow.png" class="arrow" />
-    <p class="navigate-to-dashboard-text">{{ $t("_navigation.back") }}</p>
+  <div class="navigate-to-dashboard">
+    <router-link :to="to" class="router-link">
+      <img src="../../../public/arrow.png" class="arrow" />
+      <p class="navigate-to-dashboard-text">{{ $t("_navigation.back") }}</p>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: "NavigateBack",
+  props: {
+    to: { type: Object, default: {} },
+  },
 };
 </script>
 
@@ -25,6 +30,11 @@ export default {
   .navigate-to-dashboard-text {
     font-weight: 600;
     margin-top: 2px;
+  }
+
+  .router-link {
+    text-decoration: none;
+    color: #3e3e3e;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="stream">
     <div class="stream-content">
       <div class="stream-container">
-        <NavigateBack />
+        <NavigateBack :to="{ name: 'dashboard' }" />
         <div class="stream-placeholder"></div>
 
         <div class="stream-meta">
@@ -15,6 +15,7 @@
           :name="stream.name"
           :followers="stream.followers"
           :city="stream.city"
+          :to="{ name: 'profile' }"
         />
       </div>
     </div>
