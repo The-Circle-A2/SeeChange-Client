@@ -1,11 +1,7 @@
 <template>
   <div class="chat-wrapper">
     <div v-if="!info" class="chat-container">
-      <img
-        v-if="name !== ''"
-        src="../../../../public/avatar.png"
-        class="profile-avatar"
-      />
+      <img src="../../../../public/avatar.png" class="profile-avatar" />
 
       <div class="chat-header">
         <p class="chat-name">
