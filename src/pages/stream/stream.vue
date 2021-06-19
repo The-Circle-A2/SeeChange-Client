@@ -15,7 +15,7 @@
           :name="stream.name"
           :followers="stream.followers"
           :city="stream.city"
-          :to="{ name: 'profile' }"
+          :to="{ name: 'profile', params: { id: stream.streamer_id } }"
         />
       </div>
     </div>
@@ -56,10 +56,12 @@ export default {
   async created() {
     socketConnection.establishConnection(this);
   },
-  computed: mapGetters({
-    items: "dummy/chat",
-    stream: "dummy/stream",
-  }),
+  computed: {
+    ...mapGetters({ streamId: "dummy/single", items: "dummy/chat" }),
+    stream() {
+      return this.streamId(this.$route.params.id);
+    },
+  },
   components: { NavigateBack, Profile, ChatMessage },
   name: "Stream",
   data() {
