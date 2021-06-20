@@ -53,6 +53,9 @@ export default {
   async created () {
     socketConnection.establishConnection(this);
   },
+  beforeDestroy() {
+    socketConnection.disconnect();
+  },
   computed: mapGetters({
     items: "dummy/chat",
     stream: "dummy/stream",

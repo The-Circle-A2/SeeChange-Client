@@ -61,24 +61,24 @@ export const state = {
 
   },
   chatMessages: [
-    {
-      _id: 1,
-      name: "Piet Jan",
-      date: "01-01-01 11:11",
-      message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      _id: 2,
-      name: "Piet Jan",
-      date: "01-01-01 11:11",
-      message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      _id: 3,
-      name: "Piet Jan",
-      date: "01-01-01 11:11",
-      message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
+    // {
+    //   _id: 1,
+    //   name: "Piet Jan",
+    //   date: "01-01-01 11:11",
+    //   message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   _id: 2,
+    //   name: "Piet Jan",
+    //   date: "01-01-01 11:11",
+    //   message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
+    // {
+    //   _id: 3,
+    //   name: "Piet Jan",
+    //   date: "01-01-01 11:11",
+    //   message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // },
   ],
   user: {
     _id: 1,

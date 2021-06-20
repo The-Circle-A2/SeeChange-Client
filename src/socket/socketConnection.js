@@ -19,23 +19,38 @@ exports.establishConnection = (that) => {
 
     stream = that;
     socket = io("http://localhost:3000", connectionOptions);
-    socket.emit('joinstream', { "username": "John Doe", "stream": 1 });
+    const userid = Math.floor(Math.random() * 10000001);
+    const streamId = Math.floor(Math.random() * 11);
+    socket.emit('joinstream', { "username": userid.toString(), "stream": streamId});
+
+    while (stream.items.length) {
+      stream.items.pop();
+    }
 
     socket.on('message', (message) => {
+      const lastMessage = stream.items[stream.items.length - 1];
+
       const messageToAdd = 
       {
         _id: stream.items.length + 1,
         name: message.username,
         date: message.time,
+        dateWithMilliSeconds: message.timeWithMilliSeconds,
         message: message.text,
       };
-      stream.items.push(messageToAdd);
+
+      if (stream.items.length === 0) {
+        stream.items.push(messageToAdd);
+      } else if (lastMessage !== undefined) {
+        if (lastMessage.dateWithMilliSeconds !== message.timeWithMilliSeconds) {
+          stream.items.push(messageToAdd);
+        }
+      }
     });
 
-    // socket.on('streamUsers', ({ stream, users }) => {
-    //   outputstreamName(stream);
-    //   outputUsers(users);
-    // });
+    socket.on('streamUsers', ({ streamFromServer, users }) => {
+      stream.stream.viewers = users.length.toString();
+    });
 };
 
 exports.sendMessageToServer = (message) => {
@@ -52,5 +67,14 @@ exports.sendMessageToServer = (message) => {
 
    socket.emit('chatMessage', messageWithSig);
 };
+
+exports.disconnect = () => {    
+  socket.emit('disconnectUserFromStream', socket.id);
+};
+
+function formatDate(date){
+  date = date.split(' ')[0] + " " + date.split(' ')[1]; 
+  return date;
+}
 
 export default exports;
