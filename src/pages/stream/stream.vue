@@ -20,13 +20,16 @@
       </div>
     </div>
     <div class="stream-sidebar">
-      <ChatMessage
-        v-for="item in items"
-        :key="item._id"
-        :name="item.name"
-        :date="item.date"
-        :message="item.message"
-      />
+      <div class="container">
+        <ChatMessage
+          v-for="item in items"
+          :key="item._id"
+          :name="item.name"
+          :date="item.date"
+          :message="item.message"
+          :info="item.info"
+        />
+      </div>
 
       <div class="chat-input-container">
         <form ref="chatBox" novalidate class="chat-form" @submit.prevent="send">
@@ -50,7 +53,7 @@ import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import socketConnection from "../../socket/socketConnection.js";
 export default {
-  async created () {
+  async created() {
     socketConnection.establishConnection(this);
   },
   beforeDestroy() {
@@ -80,7 +83,7 @@ export default {
         console.log("niet valid");
         this.$refs.chatBox.reset();
         return;
-      } else{
+      } else {
         socketConnection.sendMessageToServer(this.message);
         this.message = "";
       }
@@ -114,6 +117,15 @@ export default {
       var(--sidebar-border-color);
     background-color: #fff;
     padding: 20px 20px;
+  }
+
+  .container {
+    overflow-y: scroll;
+    word-wrap: break-word;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 
   .stream-container {
@@ -187,20 +199,6 @@ export default {
     .streamer-location {
       font-weight: 300;
       font-size: 14px;
-    }
-
-    .follow-button {
-      width: 90px;
-      height: 26px;
-      background: #f54b35;
-      border-radius: 3px;
-      color: #ffffff;
-      border: none;
-      font-size: 14px;
-      font-weight: 500;
-      align-self: center;
-      margin-left: auto;
-      order: 2;
     }
   }
 
