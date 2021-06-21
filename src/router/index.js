@@ -19,12 +19,12 @@ const router = new VueRouter({
       component: Dashboard,
     },
     {
-      path: "/stream/",
+      path: "/stream/:id",
       name: "stream",
       component: Stream,
     },
     {
-      path: "/profile/",
+      path: "/profile/:id",
       name: "profile",
       component: Profile,
     },
