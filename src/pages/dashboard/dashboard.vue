@@ -14,15 +14,28 @@
 <script>
 import StreamItem from "../../components/stream/StreamItem.vue";
 import { mapGetters } from "vuex";
+import store from "../../store";
 
 export default {
   computed: mapGetters({
     items: "dummy/streams",
   }),
-  components: { StreamItem },
+
+  components: {
+    StreamItem
+  },
+
   name: "Dashboard",
+
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
+  },
+
+  beforeRouteEnter(to, from, next) {
+    if(store.getters["user/username"] == null) {
+      next({name: 'connect'});
+    }
+    else next();
   },
 };
 </script>

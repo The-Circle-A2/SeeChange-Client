@@ -48,6 +48,7 @@ import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
+import store from "../../store";
 
 export default {
   computed: mapGetters({
@@ -86,6 +87,13 @@ export default {
   },
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
+  },
+
+  beforeRouteEnter(to, from, next) {
+    if(store.getters["user/username"] == null) {
+      next({name: 'connect'});
+    }
+    else next();
   },
 };
 </script>
