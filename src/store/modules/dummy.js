@@ -8,6 +8,7 @@ export const state = {
       name: "John Doe",
       city: "city",
       streamer_id: 1,
+      viewers: "0",
     },
     {
       _id: 2,
@@ -15,6 +16,7 @@ export const state = {
       name: "Ben Dover",
       city: "city",
       streamer_id: 2,
+      viewers: "0",
     },
     {
       _id: 3,
@@ -22,6 +24,7 @@ export const state = {
       name: "Dees Nuts",
       city: "Kaas",
       streamer_id: 3,
+      viewers: "0",
     },
     {
       _id: 4,
@@ -29,6 +32,7 @@ export const state = {
       name: "Erik Jan",
       city: "city",
       streamer_id: 4,
+      viewers: "0",
     },
     {
       _id: 5,
@@ -36,6 +40,7 @@ export const state = {
       name: "Erik Jan",
       city: "city",
       streamer_id: 5,
+      viewers: "0",
     },
   ],
   following: [

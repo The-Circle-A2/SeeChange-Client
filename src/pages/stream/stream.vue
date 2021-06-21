@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     ...mapGetters({ 
-    streamId: "dummy/single", 
+    streamId: "dummy/single",
     items: "dummy/chat",
     username: "user/username",
     public_key: "user/public_key",
