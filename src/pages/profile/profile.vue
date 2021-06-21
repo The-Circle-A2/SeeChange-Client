@@ -28,6 +28,7 @@ import Profile from "../../components/layout/Profile.vue";
 import StreamItem from "../../components/stream/StreamItem.vue";
 import NavigateBack from "../../components/navigation/NavigateBack.vue";
 import { mapGetters } from "vuex";
+import store from "../../store";
 
 export default {
   computed: mapGetters({
@@ -38,6 +39,13 @@ export default {
   name: "ProfilePage",
   metaInfo() {
     return { title: this.$t("_streamer-profile.title") };
+  },
+
+  beforeRouteEnter(to, from, next) {
+    if(store.getters["user/username"] == null) {
+      next({name: 'connect'});
+    }
+    else next();
   },
 };
 </script>

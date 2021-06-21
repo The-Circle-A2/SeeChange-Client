@@ -5,7 +5,7 @@ import store from "../store";
 import Dashboard from "../pages/dashboard/dashboard.vue";
 import Profile from "../pages/profile/profile.vue";
 import Stream from "../pages/stream/stream.vue";
-import SignIn from "../pages/authenticate/sign-in.vue";
+import Connect from "../pages/authenticate/connect.vue";
 import NotFound from "../pages/404.vue";
 
 Vue.use(VueRouter);
@@ -29,9 +29,9 @@ const router = new VueRouter({
       component: Profile,
     },
     {
-      path: "/sign-in",
-      name: "sign-in",
-      component: SignIn,
+      path: "/connect",
+      name: "connect",
+      component: Connect,
       meta: {
         layout: "authenticate",
         requiresVisitor: true,

@@ -17,12 +17,17 @@
     "title": "People you follow"
   },
   "_fields": {
-    "email": "Email",
-    "password": "Password"
+    "username": "Gebruikersnaam",
+    "private_key": "Private key",
+    "public_key": "Public key"
+  },
+
+  "_validation": {
+    "field_required": "Veld verplicht"
   },
 
   "_buttons": {
-    "sign_in": "Sign in"
+    "connect": "Verbinden"
   },
 
   "404": {
