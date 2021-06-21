@@ -64,6 +64,9 @@ export default {
   computed: mapGetters({
     items: "dummy/chat",
     stream: "dummy/stream",
+    username: "user/username",
+    public_key: "user/public_key",
+    private_key: "user/private_key"
   }),
   components: { NavigateBack, Profile, ChatMessage },
   name: "Stream",

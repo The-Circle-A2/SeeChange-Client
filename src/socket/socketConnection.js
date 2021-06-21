@@ -8,7 +8,7 @@ const {
 let socket;
 let exports = {};
 let stream;
-
+const streamId = Math.floor(Math.random() * 11);
 exports.establishConnection = (that) => {
   var connectionOptions = {
     "force new connection": true,
@@ -19,10 +19,8 @@ exports.establishConnection = (that) => {
 
     stream = that;
     socket = io("http://localhost:3000", connectionOptions);
-    const userid = Math.floor(Math.random() * 10000001);
-    const streamId = Math.floor(Math.random() * 11);
-
-    socket.emit('joinstream', signMessage({ "username": userid.toString(), "stream": streamId}));
+    
+    socket.emit('joinstream', signMessage("", stream, streamId));
 
     while (stream.items.length) {
       stream.items.pop();
@@ -68,11 +66,11 @@ exports.sendMessageToServer = (message) => {
     return false;
   }
 
-  socket.emit("chatMessage", signMessage(message));
+  socket.emit("chatMessage", signMessage(message, stream, streamId));
 };
 
 exports.disconnect = () => {    
-  socket.emit('disconnectUserFromStream', signMessage(socket.id));
+  socket.emit('disconnectUserFromStream', signMessage(socket.id, stream, streamId));
 };
 
 export default exports;
