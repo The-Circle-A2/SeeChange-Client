@@ -15,18 +15,21 @@
           :name="stream.name"
           :followers="stream.followers"
           :city="stream.city"
-          :to="{ name: 'profile' }"
+          :to="{ name: 'profile', params: { id: stream.streamer_id } }"
         />
       </div>
     </div>
     <div class="stream-sidebar">
-      <ChatMessage
-        v-for="item in items"
-        :key="item._id"
-        :name="item.name"
-        :date="item.date"
-        :message="item.message"
-      />
+      <div class="container">
+        <ChatMessage
+          v-for="item in items"
+          :key="item._id"
+          :name="item.name"
+          :date="item.date"
+          :message="item.message"
+          :info="item.info"
+        />
+      </div>
 
       <div class="chat-input-container">
         <form ref="chatBox" novalidate class="chat-form" @submit.prevent="send">
@@ -50,11 +53,25 @@ import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import store from "../../store";
 
+import socketConnection from "../../socket/socketConnection.js";
 export default {
-  computed: mapGetters({
+  async created() {
+    socketConnection.establishConnection(this);
+  },
+    beforeDestroy() {
+    socketConnection.disconnect();
+  },
+  computed: {
+    ...mapGetters({ 
+    streamId: "dummy/single",
     items: "dummy/chat",
-    stream: "dummy/stream",
-  }),
+    username: "user/username",
+    public_key: "user/public_key",
+    private_key: "user/private_key" }),
+    stream() {
+      return this.streamId(this.$route.params.id);
+    },
+  },
   components: { NavigateBack, Profile, ChatMessage },
   name: "Stream",
   data() {
@@ -75,14 +92,12 @@ export default {
         console.log("niet valid");
         this.$refs.chatBox.reset();
         return;
+      } else {
+        socketConnection.sendMessageToServer(this.message);
+        this.message = "";
       }
 
       this.$refs.chatBox.reset();
-      // this.$store.dispatch('datasources/create', this.data_source).then(() => {
-
-      // }).catch(() => {
-
-      // })
     },
   },
   metaInfo() {
@@ -118,6 +133,15 @@ export default {
       var(--sidebar-border-color);
     background-color: #fff;
     padding: 20px 20px;
+  }
+
+  .container {
+    overflow-y: scroll;
+    word-wrap: break-word;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 
   .stream-container {
@@ -191,20 +215,6 @@ export default {
     .streamer-location {
       font-weight: 300;
       font-size: 14px;
-    }
-
-    .follow-button {
-      width: 90px;
-      height: 26px;
-      background: #f54b35;
-      border-radius: 3px;
-      color: #ffffff;
-      border: none;
-      font-size: 14px;
-      font-weight: 500;
-      align-self: center;
-      margin-left: auto;
-      order: 2;
     }
   }
 
