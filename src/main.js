@@ -74,7 +74,7 @@ let mixins = {
     },
 
     formatDateReadable: function (date) {
-      if (date == null) return "-";  
+      if (date == null) return "-";
       date = date.replaceAll(" ", "T");
 
       const options = { month: "long", day: "numeric" };
