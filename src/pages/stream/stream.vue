@@ -62,7 +62,7 @@ export default {
     socketConnection.disconnect();
   },
   computed: {
-    ...mapGetters({ 
+    ...mapGetters({
     streamId: "dummy/single",
     items: "dummy/chat",
     username: "user/username",
@@ -248,7 +248,7 @@ export default {
   .chat-submit {
     width: 20px;
     height: 20px;
-    background: url(../../../public/send.png);
+    //background: url(../../../public/send.png);
     background-repeat: no-repeat;
     border: none;
     margin-right: 10px;
