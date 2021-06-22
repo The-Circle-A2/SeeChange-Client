@@ -17,6 +17,8 @@ exports.establishConnection = (that) => {
     transports: ["websocket"],
   };
 
+  console.log(process.env.CHAT_URL);
+
     stream = that;
     socket = io(process.env.CHAT_URL, connectionOptions);
     socket.emit('joinstream', signMessage("", stream, stream.stream._id));
