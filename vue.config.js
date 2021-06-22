@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    outputDir: path.resolve(__dirname, './client/public'),
+    outputDir: path.resolve(__dirname, '../seechange-client.the-circle.designone.nl/public'),
     devServer: {
       proxy: {
           '/api/': {
