@@ -48,7 +48,7 @@
 <script>
 import NavigateBack from "../../components/navigation/NavigateBack.vue";
 import Profile from "../../components/layout/Profile.vue";
-import ChatMessage from "./components/ChatMessage.vue";
+import ChatMessage from "../../components/ChatMessage.vue";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import store from "../../store";
@@ -62,7 +62,7 @@ export default {
     socketConnection.disconnect();
   },
   computed: {
-    ...mapGetters({ 
+    ...mapGetters({
     streamId: "dummy/single",
     items: "dummy/chat",
     username: "user/username",
