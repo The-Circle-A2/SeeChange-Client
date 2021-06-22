@@ -1,0 +1,37 @@
+{
+  "_dashboard": {
+    "title": "Dashboard"
+  },
+  "_navigation":{
+    "title": "SeeChange",
+    "back": "Back to dashboard"
+  },
+  "_stream": {
+    "followers": "followers"
+  },
+  "_streamer-profile": {
+    "title": "Streamer Profile",
+    "header": "Recent Streams"
+  },
+  "_sidebar": {
+    "title": "People you follow"
+  },
+  "_fields": {
+    "username": "Gebruikersnaam",
+    "private_key": "Private key",
+    "public_key": "Public key"
+  },
+
+  "_validation": {
+    "field_required": "Veld verplicht"
+  },
+
+  "_buttons": {
+    "connect": "Verbinden"
+  },
+
+  "404": {
+    "title": "Page not found",
+    "subtitle": "Go back to the dashboard"
+  }
+}
