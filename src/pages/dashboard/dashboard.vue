@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="streams.length != 0">
+    <div v-if="streams.length != 0" class="streams">
       <StreamItem
         v-for="stream in streams"
         :key="stream"
@@ -66,9 +66,13 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding: 60px 50px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
   width: 100vw;
+
+  .streams {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
 }
 </style>
