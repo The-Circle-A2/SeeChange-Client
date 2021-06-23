@@ -13,11 +13,6 @@
           <p class="view-count">{{ stream.viewers }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
         </div>
-
-        <Profile
-          :name="username"
-          :to="{ name: 'profile', params: { id: username } }"
-        />
       </div>
     </div>
     <div class="stream-sidebar">
@@ -136,7 +131,7 @@ export default {
 
   .stream-content {
     width: calc(100vw - 325px);
-    margin-top: 30px;
+    margin-top: 50px;
   }
 
   .stream-sidebar {
@@ -170,7 +165,7 @@ export default {
 
     .stream-placeholder {
       max-width: 100%;
-      margin-top: 20px;
+      margin-top: 25px;
     }
 
     .stream-title {
