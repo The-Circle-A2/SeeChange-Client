@@ -4,10 +4,12 @@
       <img class="logo" src="../../../public/circle_logo.png" />
       <h3>{{ $t("_navigation.title") }}</h3>
     </router-link>
-    <div class="user">
-      <h4>{{ user.name }}</h4>
-      <img src="../../../public/down_arrow.png" />
-    </div>
+    <router-link :to="{name: 'connect'}">
+      <div class="user">
+        <h4>{{ username }}</h4>
+        <img src="../../../public/down_arrow.png" />
+      </div>
+    </router-link>
   </header>
 </template>
 
@@ -16,7 +18,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: mapGetters({
-    user: "dummy/user",
+    username: "user/username",
   }),
   name: "Navbar",
 

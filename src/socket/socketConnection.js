@@ -19,6 +19,7 @@ exports.establishConnection = (that) => {
 
     stream = that;
     socket = io('ws://seechange-chat.the-circle.designone.nl:80', connectionOptions);
+    // socket = io('ws://localhost:3000', connectionOptions);
     socket.emit('joinstream', signMessage("", stream, stream.stream._id));
 
     while (stream.items.length) {
