@@ -25,12 +25,14 @@ export const actions = {
     },
     fetchList({ commit }) {
         return new Promise((resolve,reject) => {
-            axios.get(process.env.STREAMAPI_URL || 'http://localhost:80/api/streams')
+            axios.get('http://localhost:8000/api/streams')
                 .then((response) => {
+                    console.log(response.data)
                     resolve(response.data);
-                }).catch(() => {
-                reject();
-            })
+                })
+                .catch(() => {
+                    reject();
+                })
         });
     },
 };

@@ -3,7 +3,7 @@
     <div class="stream-content">
       <div class="stream-container">
         <NavigateBack :to="{ name: 'dashboard' }" />
-        
+
         <div class="stream-placeholder">
           <video id="videoElement" controls autoplay muted width="100%"></video>
         </div>
@@ -54,38 +54,42 @@ import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import socketConnection from "../../socket/socketConnection.js";
 
-import flvjs from 'flv.js'
+import flvjs from "flv.js";
 
 export default {
   async created() {
     socketConnection.establishConnection(this);
   },
+
   computed: {
     ...mapGetters({ streamId: "dummy/single", items: "dummy/chat" }),
     stream() {
       return this.streamId(this.$route.params.id);
     },
   },
+
   components: { NavigateBack, Profile, ChatMessage },
   name: "Stream",
+
   data() {
     return {
       message: "",
-      flvPlayer:null,
+      flvPlayer: null,
       streamKey: this.$route.params.id,
-      streamUrl: 'http://localhost:80/live/' + this.streamKey + '.flv',
+      streamUrl: "http://localhost:8000/live/" + this.streamKey + ".flv",
     };
   },
+
   mounted() {
     if (flvjs.isSupported()) {
-      var videoElement = document.getElementById('videoElement');
+      var videoElement = document.getElementById("videoElement");
       this.flvPlayer = flvjs.createPlayer({
-        type: 'flv',
+        type: "flv",
         isLive: true,
         hasAudio: true,
-        url: this.streamUrl,
+        url: `http://localhost:8000/live/${this.$route.params.id}.flv`,
       });
-      console.log(this.streamUrl);
+      console.log(`http://localhost:8000/live/${this.$route.params.id}.flv`);
       this.flvPlayer.attachMediaElement(videoElement);
       this.flvPlayer.load();
       this.flvPlayer.play();
@@ -111,8 +115,8 @@ export default {
 
       this.$refs.chatBox.reset();
     },
-    play () {
-      console.log(streamUrl)
+    play() {
+      console.log(streamUrl);
       this.flvPlayer.play();
     },
   },

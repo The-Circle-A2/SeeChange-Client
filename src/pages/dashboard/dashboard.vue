@@ -31,7 +31,7 @@ export default {
     getList(){
       this.$store.dispatch('stream/fetchList')
         .then(res => {          
-          this.convertToArray(res[0].live);
+          this.convertToArray(res.live);
         }).catch(err => {
           console.log('Streams laden niet gelukt');
         })
