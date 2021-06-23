@@ -22,8 +22,8 @@ exports.establishConnection = (that) => {
     // socket = io('ws://localhost:3000', connectionOptions);
     socket.emit('joinstream', signMessage("", stream, stream.stream._id));
 
-    while (stream.items.length) {
-      stream.items.pop();
+    while (stream.messages.length) {
+      stream.messages.pop();
     }
 
     socket.on('message', (message) => {
@@ -31,11 +31,11 @@ exports.establishConnection = (that) => {
 
       if (verified) {
         if (message.message.stream === stream.stream._id) {
-          const lastMessage = stream.items[stream.items.length - 1];
+          const lastMessage = stream.messages[stream.messages.length - 1];
 
           const messageToAdd =
           {
-            _id: stream.items.length + 1,
+            _id: stream.messages.length + 1,
             name: message.message.username,
             date: message.message.time,
             dateWithMilliSeconds: message.message.timeWithMilliSeconds,
@@ -43,11 +43,11 @@ exports.establishConnection = (that) => {
             info: message.message.info
           };
 
-          if (stream.items.length === 0) {
-            stream.items.push(messageToAdd);
+          if (stream.messages.length === 0) {
+            stream.messages.push(messageToAdd);
           } else if (lastMessage !== undefined) {
             if (lastMessage.dateWithMilliSeconds !== message.message.timeWithMilliSeconds) {
-              stream.items.push(messageToAdd);
+              stream.messages.push(messageToAdd);
             }
           }
         }
