@@ -9,7 +9,7 @@
         </div>
 
         <div class="stream-meta">
-          <p class="stream-title">{{ username }}</p>
+          <p class="stream-title">{{ this.$route.params.id }}</p>
           <p class="view-count">{{ stream.viewers }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
         </div>
