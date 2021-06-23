@@ -9,21 +9,21 @@
         </div>
 
         <div class="stream-meta">
-          <p class="stream-title">{{ this.streamKey }}</p>
-          <p class="view-count">{{ stream.viewers }}</p>
+          <p class="stream-title">{{ username }}</p>
+          <p class="view-count">{{ 0 }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
         </div>
 
         <Profile
-          :name="stream.name"
-          :to="{ name: 'profile', params: { id: stream.streamer_id } }"
+          :name="username"
+          :to="{ name: 'profile', params: { id: username } }"
         />
       </div>
     </div>
     <div class="stream-sidebar">
       <div class="container">
         <ChatMessage
-          v-for="item in items"
+          v-for="item in messages"
           :key="item._id"
           :name="item.name"
           :date="item.date"
@@ -57,14 +57,21 @@ import socketConnection from "../../socket/socketConnection.js";
 import flvjs from "flv.js";
 
 export default {
-  async created() {
-    socketConnection.establishConnection(this);
+  name: "Stream",
+  components: { NavigateBack, Profile, ChatMessage },
+
+  data() {
+    return {
+      messages: [],
+      message: "",
+      flvPlayer: null,
+      streamKey: this.$route.params.id,
+    };
   },
 
   computed: {
     ...mapGetters({
       streamId: "dummy/single",
-      items: "dummy/chat",
       username: "user/username",
       public_key: "user/public_key",
       private_key: "user/private_key",
@@ -75,20 +82,13 @@ export default {
     },
   },
 
-  components: { NavigateBack, Profile, ChatMessage },
-  name: "Stream",
-
-  data() {
-    return {
-      message: "",
-      flvPlayer: null,
-      streamKey: this.$route.params.id,
-    };
+  async created() {
+    socketConnection.establishConnection(this);
   },
 
   mounted() {
     if (flvjs.isSupported()) {
-      var videoElement = document.getElementById("videoElement");
+      let videoElement = document.getElementById("videoElement");
       this.flvPlayer = flvjs.createPlayer({
         type: "flv",
         isLive: true,
@@ -107,7 +107,6 @@ export default {
   },
   methods: {
     send() {
-      console.log("Send aangeroepen");
       this.$v.$touch();
       if (this.$v.$invalid) {
         console.log("niet valid");
