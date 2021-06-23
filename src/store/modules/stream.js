@@ -13,7 +13,7 @@ export const getters = {
 export const actions = {
     fetchSingle({ commit }, id) {
         return new Promise((resolve,reject) => {
-            axios.get(`http://seechange-stream.the-circle.designone.nl/:8000/api/streams/${ id }`)
+            axios.get(`http://seechange-stream.the-circle.designone.nl:8000/api/streams/${ id }`)
                 .then((response) => {
                     commit('SET_SINGLE', response.data);
                     resolve();
@@ -24,7 +24,7 @@ export const actions = {
     },
     fetchList({ commit }) {
         return new Promise((resolve,reject) => {
-            axios.get('http://seechange-stream.the-circle.designone.nl/:8000/api/streams')
+            axios.get('http://seechange-stream.the-circle.designone.nl:8000/api/streams')
                 .then((response) => {                    
                     resolve(response.data);
                 })

@@ -93,7 +93,7 @@ export default {
         type: "flv",
         isLive: true,
         hasAudio: true,
-        url: `http://seechange-stream.the-circle.designone.nl/live/${this.$route.params.id}.flv`,
+        url: `http://seechange-stream.the-circle.designone.nl:8000/live/${this.$route.params.id}.flv`,
       });
       this.flvPlayer.attachMediaElement(videoElement);
       this.flvPlayer.load();
