@@ -3,18 +3,19 @@
     <div class="stream-content">
       <div class="stream-container">
         <NavigateBack :to="{ name: 'dashboard' }" />
-        <div class="stream-placeholder"></div>
+
+        <div class="stream-placeholder">
+          <video id="videoElement" controls autoplay muted width="100%"></video>
+        </div>
 
         <div class="stream-meta">
-          <p class="stream-title">{{ stream.title }}</p>
+          <p class="stream-title">{{ this.streamKey }}</p>
           <p class="view-count">{{ stream.viewers }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
         </div>
 
         <Profile
           :name="stream.name"
-          :followers="stream.followers"
-          :city="stream.city"
           :to="{ name: 'profile', params: { id: stream.streamer_id } }"
         />
       </div>
@@ -51,16 +52,15 @@ import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
-import store from "../../store";
-
 import socketConnection from "../../socket/socketConnection.js";
+
+import flvjs from "flv.js";
+
 export default {
   async created() {
     socketConnection.establishConnection(this);
   },
-    beforeDestroy() {
-    socketConnection.disconnect();
-  },
+
   computed: {
     ...mapGetters({
     streamId: "dummy/single",
@@ -68,16 +68,38 @@ export default {
     username: "user/username",
     public_key: "user/public_key",
     private_key: "user/private_key" }),
+
     stream() {
       return this.streamId(this.$route.params.id);
     },
   },
+
   components: { NavigateBack, Profile, ChatMessage },
   name: "Stream",
+
   data() {
     return {
       message: "",
+      flvPlayer: null,
+      streamKey: this.$route.params.id,
+      streamUrl: "http://localhost:8000/live/" + this.streamKey + ".flv",
     };
+  },
+
+  mounted() {
+    if (flvjs.isSupported()) {
+      var videoElement = document.getElementById("videoElement");
+      this.flvPlayer = flvjs.createPlayer({
+        type: "flv",
+        isLive: true,
+        hasAudio: true,
+        url: `http://localhost:8000/live/${this.$route.params.id}.flv`,
+      });
+      console.log(`http://localhost:8000/live/${this.$route.params.id}.flv`);
+      this.flvPlayer.attachMediaElement(videoElement);
+      this.flvPlayer.load();
+      this.flvPlayer.play();
+    }
   },
   validations: {
     message: {
@@ -99,16 +121,13 @@ export default {
 
       this.$refs.chatBox.reset();
     },
+    play() {
+      console.log(streamUrl);
+      this.flvPlayer.play();
+    },
   },
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
-  },
-
-  beforeRouteEnter(to, from, next) {
-    if(store.getters["user/username"] == null) {
-      next({name: 'connect'});
-    }
-    else next();
   },
 };
 </script>

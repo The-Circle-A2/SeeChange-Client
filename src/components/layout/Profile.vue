@@ -1,14 +1,8 @@
 <template>
   <router-link :to="to" class="router-link">
     <div class="streamer-info">
-      <img src="../../../public/avatar.png" class="streamer-avatar" />
       <div class="streamer-info-text">
         <p class="streamer-name">{{ name }}</p>
-        <p></p>
-        <p class="streamer-followers">
-          {{ followers }} {{ $t("_stream.followers") }}
-        </p>
-        <p class="streamer-location">{{ city }}</p>
       </div>
     </div>
   </router-link>
@@ -20,8 +14,6 @@ import { mapGetters } from "vuex";
 export default {
   props: {
     name: { type: String, default: null },
-    followers: { type: String, default: null },
-    city: { type: String, default: null },
     to: { type: Object, default: {} },
   },
 
