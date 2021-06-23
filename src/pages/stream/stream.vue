@@ -10,7 +10,7 @@
 
         <div class="stream-meta">
           <p class="stream-title">{{ username }}</p>
-          <p class="view-count">{{ 0 }}</p>
+          <p class="view-count">{{ stream.viewers }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
         </div>
 
@@ -170,8 +170,7 @@ export default {
 
     .stream-placeholder {
       max-width: 100%;
-      height: 535px;
-      background-color: #c4c4c4;
+      border: 2px solid #eee;
       margin-bottom: 10px;
     }
 
