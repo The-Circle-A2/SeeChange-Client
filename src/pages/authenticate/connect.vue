@@ -21,12 +21,6 @@
         :error="$v.user.private_key"
         v-model="user.private_key"
       />
-      <v-textarea
-          :label="$t('_fields.public_key')"
-          :required="true"
-          :error="$v.user.public_key"
-          v-model="user.public_key"
-      />
       <br />
       <v-button :label="$t('_buttons.connect')" position="full" />
     </form>
@@ -44,7 +38,6 @@ export default {
       user: {
         username: "",
         private_key: "",
-        public_key: ""
       },
     };
   },
@@ -56,10 +49,7 @@ export default {
       },
       private_key: {
         required,
-      },
-      public_key: {
-        required,
-      },
+      }
     },
   },
 

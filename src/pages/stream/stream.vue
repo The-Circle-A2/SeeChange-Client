@@ -62,7 +62,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters({ streamId: "dummy/single", items: "dummy/chat" }),
+    ...mapGetters({
+    streamId: "dummy/single",
+    items: "dummy/chat",
+    username: "user/username",
+    public_key: "user/public_key",
+    private_key: "user/private_key" }),
+
     stream() {
       return this.streamId(this.$route.params.id);
     },
