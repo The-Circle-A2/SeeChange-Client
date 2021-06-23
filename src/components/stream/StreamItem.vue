@@ -3,9 +3,6 @@
     <span class="thumbnail"></span>
     <h5 class="title">{{ title }}</h5>
     <div class="streamer-info">
-      <p>{{ name }}</p>
-      <span class="seperation"></span>
-      <p class="city">{{ city }}</p>
     </div>
   </router-link>
 </template>
@@ -16,8 +13,6 @@ export default {
 
   props: {
     title: { type: String, default: null },
-    name: { type: String, default: null },
-    city: { type: String, default: null },
     to: { type: Object, default: {} },
   },
 };

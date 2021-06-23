@@ -1,12 +1,10 @@
 <template>
   <div class="container">
     <StreamItem
-      v-for="item in items"
-      :key="item._id"
-      :title="item.title"
-      :name="item.name"
-      :city="item.city"
-      :to="{ name: 'stream', params: { id: item._id } }"
+      v-for="stream in streams"
+      :key="stream"
+      :title="stream"
+      :to="{ name: 'stream', params: { id: stream } }"
     />
   </div>
 </template>
@@ -17,20 +15,36 @@ import { mapGetters } from "vuex";
 import store from "../../store";
 
 export default {
-  computed: mapGetters({
-    items: "dummy/streams",
-  }),
-
   components: {
     StreamItem
   },
-
   name: "Dashboard",
-
+  data(){
+    return{
+      streams: []      
+    }
+  },
+  async created(){
+    this.getList();
+  },
+  methods:{
+    getList(){
+      this.$store.dispatch('stream/fetchList')
+        .then(res => {          
+          this.convertToArray(res[0].live);
+        }).catch(err => {
+          console.log('Streams laden niet gelukt');
+        })
+    },
+    convertToArray(list){
+      for(const [key, value] of Object.entries(list)){
+        this.streams.push(key);
+      }  
+    }
+  },
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
   },
-
   beforeRouteEnter(to, from, next) {
     if(store.getters["user/username"] == null) {
       next({name: 'connect'});
