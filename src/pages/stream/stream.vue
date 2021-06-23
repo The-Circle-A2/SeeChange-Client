@@ -136,6 +136,7 @@ export default {
 
   .stream-content {
     width: calc(100vw - 325px);
+    margin-top: 30px;
   }
 
   .stream-sidebar {
@@ -166,12 +167,10 @@ export default {
     margin: 0 auto;
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 10px;
 
     .stream-placeholder {
       max-width: 100%;
-      border: 2px solid #eee;
-      margin-bottom: 10px;
+      margin-top: 20px;
     }
 
     .stream-title {
@@ -194,6 +193,7 @@ export default {
     }
 
     .stream-meta {
+      margin-top: 25px;
       display: inline-block;
       width: 100%;
     }
