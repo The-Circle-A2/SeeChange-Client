@@ -63,11 +63,12 @@ export default {
 
   computed: {
     ...mapGetters({
-    streamId: "dummy/single",
-    items: "dummy/chat",
-    username: "user/username",
-    public_key: "user/public_key",
-    private_key: "user/private_key" }),
+      streamId: "dummy/single",
+      items: "dummy/chat",
+      username: "user/username",
+      public_key: "user/public_key",
+      private_key: "user/private_key",
+    }),
 
     stream() {
       return this.streamId(this.$route.params.id);
@@ -82,7 +83,6 @@ export default {
       message: "",
       flvPlayer: null,
       streamKey: this.$route.params.id,
-      streamUrl: "http://localhost:8000/live/" + this.streamKey + ".flv",
     };
   },
 
@@ -93,9 +93,8 @@ export default {
         type: "flv",
         isLive: true,
         hasAudio: true,
-        url: `http://localhost:8000/live/${this.$route.params.id}.flv`,
+        url: `http://seechange-stream.the-circle.designone.nl/live/${this.$route.params.id}.flv`,
       });
-      console.log(`http://localhost:8000/live/${this.$route.params.id}.flv`);
       this.flvPlayer.attachMediaElement(videoElement);
       this.flvPlayer.load();
       this.flvPlayer.play();
@@ -122,7 +121,6 @@ export default {
       this.$refs.chatBox.reset();
     },
     play() {
-      console.log(streamUrl);
       this.flvPlayer.play();
     },
   },
