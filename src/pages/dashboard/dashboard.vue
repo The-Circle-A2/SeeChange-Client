@@ -34,6 +34,7 @@ export default {
       this.$store
         .dispatch("stream/fetchList")
         .then((res) => {
+          this.streams = [];
           if (Object.keys(res).length !== 0) this.convertToArray(res.live);
         })
         .catch((err) => {
@@ -49,6 +50,11 @@ export default {
 
   created() {
     this.getList();
+
+    setInterval(() => {
+      this.getList();
+      console.log("aangeroepen");
+    }, 10000);
   },
 
   metaInfo() {

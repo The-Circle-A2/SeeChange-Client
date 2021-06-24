@@ -157,7 +157,7 @@ export default {
   }
 
   .stream-container {
-    max-width: 1024px;
+    max-width: 760px;
     display: block;
     margin: 0 auto;
     padding-left: 40px;
@@ -166,6 +166,20 @@ export default {
     .stream-placeholder {
       max-width: 100%;
       margin-top: 25px;
+      position: relative;
+      height: 425px;
+
+      video {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: auto;
+        background-size: cover;
+        overflow: hidden;
+      }
     }
 
     .stream-title {
