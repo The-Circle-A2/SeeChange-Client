@@ -1,11 +1,11 @@
 <template>
   <router-link :to="to" class="stream-item">
-    <span class="thumbnail"></span>
-    <h5 class="title">{{ title }}</h5>
-    <div class="streamer-info">
-      <p>{{ name }}</p>
-      <span class="seperation"></span>
-      <p class="city">{{ city }}</p>
+    <div class="thumbnail">
+      <div class="live-badge">
+        <span class="live-circle"></span>
+        LIVE
+      </div>
+      <h5 class="title">{{ title }}</h5>
     </div>
   </router-link>
 </template>
@@ -16,8 +16,6 @@ export default {
 
   props: {
     title: { type: String, default: null },
-    name: { type: String, default: null },
-    city: { type: String, default: null },
     to: { type: Object, default: {} },
   },
 };
@@ -28,13 +26,40 @@ export default {
   margin: auto 5px auto 0px;
   height: 177px;
   width: 313px;
-  background-color: #c4c4c4;
+  background-color: #fff;
+  border: 2px dashed #eee;
   display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .live-badge {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 12px;
+    background-color: #e10000;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+
+    .live-circle {
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
 }
 
 .title {
   margin-top: 10px;
-  font-size: 12pt;
+  font-size: 22px;
+  font-weight: 500;
   max-width: 313px;
   overflow: hidden;
   display: -webkit-box;
@@ -47,27 +72,5 @@ export default {
   height: auto;
   text-decoration: none;
   color: #3e3e3e;
-
-  .streamer-info {
-    display: flex;
-    margin-top: 5px;
-
-    p {
-      font-size: 11pt;
-    }
-
-    .city {
-      font-weight: 300;
-    }
-
-    .seperation {
-      margin: auto 5px auto 5px;
-      height: 5px;
-      width: 5px;
-      background-color: #3e3e3e;
-      border-radius: 50%;
-      display: inline-block;
-    }
-  }
 }
 </style>

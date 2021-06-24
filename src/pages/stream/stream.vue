@@ -3,26 +3,22 @@
     <div class="stream-content">
       <div class="stream-container">
         <NavigateBack :to="{ name: 'dashboard' }" />
-        <div class="stream-placeholder"></div>
+
+        <div class="stream-placeholder">
+          <video id="videoElement" controls autoplay muted width="100%"></video>
+        </div>
 
         <div class="stream-meta">
-          <p class="stream-title">{{ stream.title }}</p>
+          <p class="stream-title">{{ this.$route.params.id }}</p>
           <p class="view-count">{{ stream.viewers }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
         </div>
-
-        <Profile
-          :name="stream.name"
-          :followers="stream.followers"
-          :city="stream.city"
-          :to="{ name: 'profile', params: { id: stream.streamer_id } }"
-        />
       </div>
     </div>
     <div class="stream-sidebar">
       <div class="container">
         <ChatMessage
-          v-for="item in items"
+          v-for="item in messages"
           :key="item._id"
           :name="item.name"
           :date="item.date"
@@ -51,33 +47,53 @@ import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
-import store from "../../store";
-
 import socketConnection from "../../socket/socketConnection.js";
+
+import flvjs from "flv.js";
+
 export default {
-  async created() {
-    socketConnection.establishConnection(this);
+  name: "Stream",
+  components: { NavigateBack, Profile, ChatMessage },
+
+  data() {
+    return {
+      messages: [],
+      message: "",
+      flvPlayer: null,
+      streamKey: this.$route.params.id,
+    };
   },
-    beforeDestroy() {
-    socketConnection.disconnect();
-  },
+
   computed: {
     ...mapGetters({
-    streamId: "dummy/single",
-    items: "dummy/chat",
-    username: "user/username",
-    public_key: "user/public_key",
-    private_key: "user/private_key" }),
+      streamId: "dummy/single",
+      username: "user/username",
+      public_key: "user/public_key",
+      private_key: "user/private_key",
+    }),
+
     stream() {
       return this.streamId(this.$route.params.id);
     },
   },
-  components: { NavigateBack, Profile, ChatMessage },
-  name: "Stream",
-  data() {
-    return {
-      message: "",
-    };
+
+  async created() {
+    socketConnection.establishConnection(this);
+  },
+
+  mounted() {
+    if (flvjs.isSupported()) {
+      let videoElement = document.getElementById("videoElement");
+      this.flvPlayer = flvjs.createPlayer({
+        type: "flv",
+        isLive: true,
+        hasAudio: true,
+        url: `http://seechange-stream.the-circle.designone.nl:8000/live/${this.$route.params.id}.flv`,
+      });
+      this.flvPlayer.attachMediaElement(videoElement);
+      this.flvPlayer.load();
+      this.flvPlayer.play();
+    }
   },
   validations: {
     message: {
@@ -86,7 +102,6 @@ export default {
   },
   methods: {
     send() {
-      console.log("Send aangeroepen");
       this.$v.$touch();
       if (this.$v.$invalid) {
         console.log("niet valid");
@@ -99,16 +114,12 @@ export default {
 
       this.$refs.chatBox.reset();
     },
+    play() {
+      this.flvPlayer.play();
+    },
   },
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
-  },
-
-  beforeRouteEnter(to, from, next) {
-    if(store.getters["user/username"] == null) {
-      next({name: 'connect'});
-    }
-    else next();
   },
 };
 </script>
@@ -120,6 +131,7 @@ export default {
 
   .stream-content {
     width: calc(100vw - 325px);
+    margin-top: 50px;
   }
 
   .stream-sidebar {
@@ -145,18 +157,29 @@ export default {
   }
 
   .stream-container {
-    max-width: 1024px;
+    max-width: 760px;
     display: block;
     margin: 0 auto;
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 10px;
 
     .stream-placeholder {
       max-width: 100%;
-      height: 535px;
-      background-color: #c4c4c4;
-      margin-bottom: 10px;
+      margin-top: 25px;
+      position: relative;
+      height: 425px;
+
+      video {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: auto;
+        background-size: cover;
+        overflow: hidden;
+      }
     }
 
     .stream-title {
@@ -179,6 +202,7 @@ export default {
     }
 
     .stream-meta {
+      margin-top: 25px;
       display: inline-block;
       width: 100%;
     }

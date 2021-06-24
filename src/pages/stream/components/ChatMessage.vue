@@ -1,8 +1,6 @@
 <template>
   <div class="chat-wrapper">
     <div v-if="!info" class="chat-container">
-      <img src="../../../../public/avatar.png" class="profile-avatar" />
-
       <div class="chat-header">
         <p class="chat-name">
           {{ name }}

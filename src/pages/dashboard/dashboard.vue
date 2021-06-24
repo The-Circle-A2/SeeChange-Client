@@ -1,41 +1,70 @@
 <template>
   <div class="container">
-    <StreamItem
-      v-for="item in items"
-      :key="item._id"
-      :title="item.title"
-      :name="item.name"
-      :city="item.city"
-      :to="{ name: 'stream', params: { id: item._id } }"
-    />
+    <div v-if="streams.length != 0" class="streams">
+      <StreamItem
+        v-for="stream in streams"
+        :key="stream"
+        :title="stream"
+        :to="{ name: 'stream', params: { id: stream } }"
+      />
+    </div>
+    <p v-else>Geen streams gevonden</p>
   </div>
 </template>
 
 <script>
 import StreamItem from "../../components/stream/StreamItem.vue";
-import { mapGetters } from "vuex";
 import store from "../../store";
 
 export default {
-  computed: mapGetters({
-    items: "dummy/streams",
-  }),
+  name: "Dashboard",
 
-  components: {
-    StreamItem
+  data() {
+    return {
+      streams: [],
+    };
   },
 
-  name: "Dashboard",
+  components: {
+    StreamItem,
+  },
+
+  methods: {
+    getList() {
+      this.$store
+        .dispatch("stream/fetchList")
+        .then((res) => {
+          this.streams = [];
+          if (Object.keys(res).length !== 0) this.convertToArray(res.live);
+        })
+        .catch((err) => {
+          console.log("Streams laden niet gelukt");
+        });
+    },
+    convertToArray(list) {
+      for (const [key, value] of Object.entries(list)) {
+        this.streams.push(key);
+      }
+    },
+  },
+
+  created() {
+    this.getList();
+
+    setInterval(() => {
+      this.getList();
+      console.log("aangeroepen");
+    }, 10000);
+  },
 
   metaInfo() {
     return { title: this.$t("_dashboard.title") };
   },
 
   beforeRouteEnter(to, from, next) {
-    if(store.getters["user/username"] == null) {
-      next({name: 'connect'});
-    }
-    else next();
+    if (store.getters["user/username"] == null) {
+      next({ name: "connect" });
+    } else next();
   },
 };
 </script>
@@ -43,9 +72,13 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding: 60px 50px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
   width: 100vw;
+
+  .streams {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
 }
 </style>
