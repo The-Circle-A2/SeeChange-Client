@@ -69,6 +69,14 @@ exports.sendMessageToServer = (message) => {
   socket.emit("chatMessage", signMessage(message, stream, stream.streamId));
 };
 
+exports.sendRatingToServer = (rating) => {
+  if (!rating) {
+    return false;
+  }
+
+  socket.emit("Rating", signMessage(rating, stream, stream.streamId));
+};
+
 exports.disconnect = () => {
   socket.emit('disconnectUserFromStream', signMessage(socket.id, stream, stream.streamId));
 };

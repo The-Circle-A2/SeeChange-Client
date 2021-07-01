@@ -12,6 +12,14 @@
           <p class="stream-title">{{ this.$route.params.id }}</p>
           <p class="view-count">{{ stream.viewers }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
+           <form ref="ratingBox" novalidate class="chat-form" @submit.prevent="sendRating">
+            <input
+              class="chat-input"
+              v-model="rating"
+              placeholder="send a rating for the stream"
+            />
+            <button class="chat-submit" type="submit"></button>
+          </form>
         </div>
       </div>
     </div>
@@ -59,6 +67,7 @@ export default {
     return {
       messages: [],
       message: "",
+      rating: "",
       flvPlayer: null,
       streamKey: this.$route.params.id,
     };
@@ -88,7 +97,7 @@ export default {
         type: "flv",
         isLive: true,
         hasAudio: true,
-        url: `http://seechange-stream.the-circle.designone.nl:8000/live/${this.$route.params.id}.flv`,
+        url: `http://localhost:80/live/${this.$route.params.id}.flv`,
       });
       this.flvPlayer.attachMediaElement(videoElement);
       this.flvPlayer.load();
@@ -113,6 +122,19 @@ export default {
       }
 
       this.$refs.chatBox.reset();
+    },
+    sendRating() {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        console.log("niet valid");
+        this.$refs.ratingBox.reset();
+        return;
+      } else {
+        socketConnection.sendRatingToServer(this.message);
+        this.rating = "";
+      }
+
+      this.$refs.ratingBox.reset();
     },
     play() {
       this.flvPlayer.play();
