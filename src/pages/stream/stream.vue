@@ -112,6 +112,9 @@ export default {
     message: {
       required,
     },
+    rating: {
+      required,
+    }
   },
   methods: {
     send() {
@@ -128,8 +131,8 @@ export default {
       this.$refs.chatBox.reset();
     },
     sendRating() {
-      this.$v.$touch();
-      if (this.$v.$invalid) {
+      this.$v.rating.$touch();
+      if (this.$v.rating.$invalid) {
         console.log("niet valid - rating");
         this.$refs.ratingBox.reset();
         return;
