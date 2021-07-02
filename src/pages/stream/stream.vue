@@ -91,6 +91,7 @@ export default {
 
   async created() {
     socketConnection.establishConnection(this);
+    ratingSocketConnection.establishConnection(this);
   },
 
   mounted() {
@@ -133,7 +134,7 @@ export default {
         this.$refs.ratingBox.reset();
         return;
       } else {
-        socketConnection.sendRatingToServer(this.message);
+        ratingSocketConnection.sendRatingToServer(this.message);
         this.rating = "";
       }
 
