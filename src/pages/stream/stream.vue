@@ -55,7 +55,9 @@ import Profile from "../../components/layout/Profile.vue";
 import ChatMessage from "./components/ChatMessage.vue";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
+
 import socketConnection from "../../socket/socketConnection.js";
+import ratingSocketConnection from "../../socket/ratingSocketConnection.js";
 
 import flvjs from "flv.js";
 
@@ -67,6 +69,7 @@ export default {
     return {
       messages: [],
       message: "",
+      ratings: [],
       rating: "",
       flvPlayer: null,
       streamKey: this.$route.params.id,
