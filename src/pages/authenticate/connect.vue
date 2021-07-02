@@ -67,7 +67,7 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) return;
 
-      axios.get('http://truyou.the-circle.designone.nl/user/' + this.user.username, {
+      axios.get('http://127.0.0.1:8000/user/' + this.user.username, {
         headers: {
           'Content-Type': 'plain/text',
         },
