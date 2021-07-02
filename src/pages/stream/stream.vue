@@ -117,7 +117,7 @@ export default {
     send() {
       this.$v.$touch();
       if (this.$v.$invalid) {
-        console.log("niet valid");
+        console.log("niet valid - chat");
         this.$refs.chatBox.reset();
         return;
       } else {
@@ -130,7 +130,7 @@ export default {
     sendRating() {
       this.$v.$touch();
       if (this.$v.$invalid) {
-        console.log("niet valid");
+        console.log("niet valid - rating");
         this.$refs.ratingBox.reset();
         return;
       } else {

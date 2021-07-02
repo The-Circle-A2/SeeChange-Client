@@ -61,11 +61,11 @@ export default {
     return { title: this.$t("_dashboard.title") };
   },
 
-  // beforeRouteEnter(to, from, next) {
-  //   if (store.getters["user/username"] == null) {
-  //     next({ name: "connect" });
-  //   } else next();
-  // },
+  beforeRouteEnter(to, from, next) {
+     if (store.getters["user/username"] == null) {
+       next({ name: "connect" });
+     } else next();
+   },
 };
 </script>
 

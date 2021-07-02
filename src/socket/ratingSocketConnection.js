@@ -20,6 +20,7 @@ exports.establishConnection = (that) => {
     stream = that;
     //socket = io('ws://seechange-chat.the-circle.designone.nl:80', connectionOptions);
     socket = io('ws://localhost:3001', connectionOptions);
+    console.log("wow");
 
     while (stream.rating.length) {
       stream.rating.pop();
@@ -59,11 +60,7 @@ exports.sendRatingToServer = (rating) => {
     return false;
   }
 
-  socket.emit("Rating", signRating(rating, stream, stream.streamId));
-};
-
-exports.disconnect = () => {
-  socket.emit('disconnectUserFromStream', signRating(socket.id, stream, stream.streamId));
+  socket.emit("rate", signRating(rating, stream, stream.streamId));
 };
 
 export default exports;
