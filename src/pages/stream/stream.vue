@@ -12,15 +12,22 @@
           <p class="stream-title">{{ this.$route.params.id }}</p>
           <p class="view-count">{{ stream.viewers }}</p>
           <img src="../../../public/viewer_icon.png" class="view-icon" />
-           <form ref="ratingBox" novalidate class="chat-form" @submit.prevent="sendRating">
-            <input
-              class="chat-input"
-              v-model="rating"
-              placeholder="send a rating for the stream"
-            />
+        </div>
+
+        <div class="rating-container" v-show="notRated">
+          <form ref="ratingBox" novalidate @submit.prevent="sendRating">
+            <select v-model="rating">
+              <option disabled value="">Please select a rating</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
             <button class="chat-submit" type="submit"></button>
           </form>
-        </div>
+          <span>Rating selected: {{ rating }}</span>
+        </div> 
       </div>
     </div>
     <div class="stream-sidebar">
@@ -71,6 +78,7 @@ export default {
       message: "",
       ratings: [],
       rating: "",
+      notRated: true, 
       flvPlayer: null,
       streamKey: this.$route.params.id,
     };
@@ -131,6 +139,7 @@ export default {
       this.$refs.chatBox.reset();
     },
     sendRating() {
+      console.log(this.rating)
       this.$v.rating.$touch();
       if (this.$v.rating.$invalid) {
         console.log("niet valid - rating");
@@ -138,6 +147,7 @@ export default {
         return;
       } else {
         ratingSocketConnection.sendRatingToServer(this.message);
+        this.notRated = false; 
         this.rating = "";
       }
 
