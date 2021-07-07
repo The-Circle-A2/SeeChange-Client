@@ -74,7 +74,7 @@ exports.sendRatingToServer = (rating) => {
     return false;
   }
 
-  socket.emit("Rating", signMessage(rating, stream, stream.streamId));
+  socket.emit("rate", signMessage(rating, stream, stream.streamId));
 };
 
 exports.disconnect = () => {

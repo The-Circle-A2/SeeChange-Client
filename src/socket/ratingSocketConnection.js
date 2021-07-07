@@ -20,7 +20,6 @@ exports.establishConnection = (that) => {
     stream = that;
     //socket = io('ws://seechange-chat.the-circle.designone.nl:80', connectionOptions);
     socket = io('ws://localhost:3001', connectionOptions);
-    console.log("wow");
 
     while (stream.rating.length) {
       stream.rating.pop();

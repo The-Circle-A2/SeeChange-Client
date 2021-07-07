@@ -146,7 +146,7 @@ export default {
         this.$refs.ratingBox.reset();
         return;
       } else {
-        ratingSocketConnection.sendRatingToServer(this.message);
+        ratingSocketConnection.sendRatingToServer(this.rating);
         this.notRated = false; 
         this.rating = "";
       }
