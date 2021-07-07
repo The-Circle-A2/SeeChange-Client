@@ -28,9 +28,12 @@
           </form>
           <span>Rating selected: {{ rating }}</span>
         </div>
+        
+         <p>Average Rating: {{ average_rating.mark }}</p>
       </div>
+     
     </div>
-    <p>Average Rating: {{ average_rating.mark }}</p>
+    
     <div class="stream-sidebar">
       <div class="container">
         <ChatMessage
@@ -148,7 +151,6 @@ export default {
         return;
       } else {
         ratingSocketConnection.sendRatingToServer(this.rating);
-        this.notRated = false; 
         this.rating = "";
       }
 
