@@ -23,10 +23,6 @@ exports.establishConnection = (that) => {
     socket.emit('joinStream', signRating("", stream));
     //socket.emit('getAverageRating', signRating("", stream));
 
-    while (stream.rating.length) {
-      stream.rating.pop();
-    }
-
     socket.on('rating', (rating) => {
       const verified = verifyRating(rating);
 
@@ -57,7 +53,6 @@ exports.establishConnection = (that) => {
 };
 
 exports.sendRatingToServer = (rating) => {
-  console.log("test");
   if (!rating) {
     return false;
   }
