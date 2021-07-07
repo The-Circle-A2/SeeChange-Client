@@ -8,7 +8,7 @@ function signRating(rating, streamComponent, stream){
     const signature = sign.sign(rating + timestamp, CryptoJS.SHA256, "sha256");
 
     const ratingWithSig = {
-        rating: rating,
+        mark: rating,
         username: streamComponent.username,
         stream: stream,
         signature: signature,
