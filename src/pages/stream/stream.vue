@@ -118,8 +118,8 @@ export default {
   },
   methods: {
     send() {
-      this.$v.$touch();
-      if (this.$v.$invalid) {
+      this.$v.message.$touch();
+      if (this.$v.message.$invalid) {
         console.log("niet valid - chat");
         this.$refs.chatBox.reset();
         return;
