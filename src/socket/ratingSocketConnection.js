@@ -38,15 +38,15 @@ exports.establishConnection = (that) => {
             name: rating.rating.username,
             date: rating.rating.time,
             dateWithMilliSeconds: rating.rating.timeWithMilliSeconds,
-            rating: rating.rating.text,
+            mark: rating.rating,
             info: rating.rating.info
           };
 
           if (stream.rating.length === 0) {
-            stream.rating.push(ratingToAdd);
+            stream.average_rating = ratingToAdd;
           } else if (lastRating !== undefined) {
             if (lastRating.dateWithMilliSeconds !== rating.rating.timeWithMilliSeconds) {
-              stream.ratings.push(rating);
+              stream.average_rating = ratingToAdd;
             }
           }
         }

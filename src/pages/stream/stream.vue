@@ -27,9 +27,10 @@
             <button class="chat-submit" type="submit"></button>
           </form>
           <span>Rating selected: {{ rating }}</span>
-        </div> 
+        </div>
       </div>
     </div>
+    <p>Average Rating: {{ average_rating.mark }}</p>
     <div class="stream-sidebar">
       <div class="container">
         <ChatMessage
@@ -76,7 +77,7 @@ export default {
     return {
       messages: [],
       message: "",
-      ratings: [],
+      average_rating: "",
       rating: "",
       notRated: true, 
       flvPlayer: null,
