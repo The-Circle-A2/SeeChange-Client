@@ -20,6 +20,8 @@ exports.establishConnection = (that) => {
     stream = that;
     //socket = io('ws://seechange-chat.the-circle.designone.nl:80', connectionOptions);
     socket = io('ws://localhost:3001', connectionOptions);
+    socket.emit('joinStream', signRating("", stream));
+    //socket.emit('getAverageRating', signRating("", stream));
 
     while (stream.rating.length) {
       stream.rating.pop();
@@ -29,7 +31,7 @@ exports.establishConnection = (that) => {
       const verified = verifyRating(rating);
 
       if (verified) {
-        if (rating.rating.stream === stream.stream._id) {
+        if (rating.rating.stream === stream.stream.streamKey) {
           const lastRating = stream.rating[stream.rating.length - 1];
 
           const ratingToAdd =
@@ -55,11 +57,12 @@ exports.establishConnection = (that) => {
 };
 
 exports.sendRatingToServer = (rating) => {
+  console.log("test");
   if (!rating) {
     return false;
   }
 
-  socket.emit("rate", signRating(rating, stream, stream.streamId));
+  socket.emit("rate", signRating(rating, stream));
 };
 
 export default exports;

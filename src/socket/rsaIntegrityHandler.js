@@ -1,16 +1,16 @@
 const JSEncrypt = require("jsencrypt/bin/jsencrypt");
 const CryptoJS = require("crypto-js");
 
-function signMessage(message, streamComponent, stream){
+function signMessage(message, stream){
     const sign = new JSEncrypt();
-    sign.setPrivateKey(streamComponent.private_key);
+    sign.setPrivateKey(stream.private_key);
     const timestamp = Date.now();
     const signature = sign.sign(message + timestamp, CryptoJS.SHA256, "sha256");
 
     const messageWithSig = {
         message: message,
-        username: streamComponent.username,
-        stream: stream,
+        username: stream.username,
+        stream: stream.streamKey,
         signature: signature,
         timestamp: timestamp,
     };

@@ -20,7 +20,7 @@ exports.establishConnection = (that) => {
     stream = that;
     //socket = io('ws://seechange-chat.the-circle.designone.nl:80', connectionOptions);
     socket = io('ws://localhost:3000', connectionOptions);
-    socket.emit('joinstream', signMessage("", stream, stream.stream._id));
+    socket.emit('joinStream', signMessage("", stream));
 
     while (stream.messages.length) {
       stream.messages.pop();
@@ -30,7 +30,7 @@ exports.establishConnection = (that) => {
       const verified = verifyMessage(message);
 
       if (verified) {
-        if (message.message.stream === stream.stream._id) {
+        if (message.message.stream === stream.streamKey) {
           const lastMessage = stream.messages[stream.messages.length - 1];
 
           const messageToAdd =
@@ -66,7 +66,7 @@ exports.sendMessageToServer = (message) => {
     return false;
   }
 
-  socket.emit("chatMessage", signMessage(message, stream, stream.streamId));
+  socket.emit("chatMessage", signMessage(message, stream));
 };
 
 exports.sendRatingToServer = (rating) => {
@@ -74,11 +74,11 @@ exports.sendRatingToServer = (rating) => {
     return false;
   }
 
-  socket.emit("rate", signMessage(rating, stream, stream.streamId));
+  socket.emit("rate", signMessage(rating, stream));
 };
 
 exports.disconnect = () => {
-  socket.emit('disconnectUserFromStream', signMessage(socket.id, stream, stream.streamId));
+  socket.emit('disconnectUserFromStream', signMessage(socket.id, stream));
 };
 
 export default exports;

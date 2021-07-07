@@ -1,16 +1,16 @@
 const JSEncrypt = require("jsencrypt/bin/jsencrypt");
 const CryptoJS = require("crypto-js");
 
-function signRating(rating, streamComponent, stream){
+function signRating(rating, stream){
     const sign = new JSEncrypt();
-    sign.setPrivateKey(streamComponent.private_key);
+    sign.setPrivateKey(stream.private_key);
     const timestamp = Date.now();
     const signature = sign.sign(rating + timestamp, CryptoJS.SHA256, "sha256");
 
     const ratingWithSig = {
         mark: rating,
-        username: streamComponent.username,
-        stream: stream,
+        username: stream.username,
+        stream: stream.streamKey,
         signature: signature,
         timestamp: timestamp,
     };
